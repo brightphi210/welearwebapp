@@ -1,25 +1,31 @@
-
-
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import type React from "react"
 
 interface AuthProps {
-    element: React.ReactNode
+  children: React.ReactNode
 }
 
-const AuthProvider = ({element} : AuthProps) => {
+const AuthProvider = ({ children }: AuthProps) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isAuthenticated = localStorage.getItem("accessToken")
+  const hasSeenWelcome = localStorage.getItem("hasSeenWelcome")
 
-    const navigate = useNavigate()
-    const isAuthenticated = localStorage.getItem('accessToken')
-    
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate('/login', { replace: true })
-        }
-    }, [isAuthenticated, navigate])
+  useEffect(() => {
+    if (location.pathname === "/") {
+      if (!hasSeenWelcome) {
+        navigate("/welcome", { replace: true })
+      } else if (!isAuthenticated) {
+        navigate("/login", { replace: true })
+      } else {
+        navigate("/dashboard", { replace: true })
+      }
+    }
+  }, [isAuthenticated, hasSeenWelcome, navigate, location])
 
-  return isAuthenticated ? element : null
+  return <>{children}</>
 }
 
 export default AuthProvider
+
