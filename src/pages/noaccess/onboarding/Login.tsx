@@ -2,6 +2,7 @@ import type React from "react"
 // import { useNavigate } from "react-router-dom"
 import logo from '@/assets/logo2.png'
 import { CustomizedButtonMain, CustomizedButtonWhite } from "@/Compnents/UI/CustomizedButton"
+import { Link } from "react-router-dom"
 const Login: React.FC = () => {
   // const navigate = useNavigate()
 
@@ -28,12 +29,18 @@ const Login: React.FC = () => {
           <div className="lg:flex flex-col gap-3 pt-5 hidden" data-aos="fade-up" data-aos-duration="500">
             <CustomizedButtonMain text="Parent"/>
             <CustomizedButtonMain text="Tutor"/>
+            <Link to={'/login/user'}>
+              <CustomizedButtonMain text="Login"/>
+            </Link>
           </div>
 
           <div className="flex lg:hidden flex-col gap-3 pt-5 w-[90%] justify-center m-auto " data-aos="fade-up" data-aos-duration="500">
 
             <CustomizedButtonWhite text="Parent"/>
             <CustomizedButtonWhite text="Tutor"/>
+            <Link to={'/login/user'}>
+              <CustomizedButtonWhite text="Login"/>
+            </Link>
           </div>
         </div>
       </div>
