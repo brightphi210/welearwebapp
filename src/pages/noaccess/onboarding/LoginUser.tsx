@@ -12,13 +12,19 @@ type FormData = {
     password: string,
 }
 
+interface ErrorResponse {
+    response?: {
+      data?: {
+        detail?: string
+      }
+    }
+  }
+
 
 const LoginUser = () => {
-
     const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate()
     const {isPending, mutate} = useLogin()
-
 
     const {
         handleSubmit,
@@ -33,11 +39,10 @@ const LoginUser = () => {
                 localStorage.setItem("accessToken", details?.data?.access);
                 navigate('/dashboard', { replace: true })
             },
-            onError: (error:any) => {
-                if (error){
-                    console.log('Login failed:', error?.response?.data?.detail)
-                    toast(error?.response?.data?.detail)
-                } 
+            onError: (error) => {
+                const err = error as ErrorResponse;
+                console.log('Login failed:', err?.response?.data?.detail)
+                toast(err?.response?.data?.detail || "An error occurred")
             },  
         })
     }
@@ -66,7 +71,7 @@ const LoginUser = () => {
                 <div className='relative'>
                     <input 
                         {...register('password', {required: true})}
-                        type={`${showPassword ? 'password' : 'text'}`} 
+                        type={`${!showPassword ? 'password' : 'text'}`} 
                         placeholder="Enter Password" 
                         className="text-sm py-6 input input-bordered w-full" 
                     />
