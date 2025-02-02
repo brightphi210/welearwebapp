@@ -1,14 +1,18 @@
-import { CustomizedButtonMain } from '@/Compnents/UI/CustomizedButton'
+import { CustomizedButtonLoading, CustomizedButtonMain } from '@/Compnents/UI/CustomizedButton'
 import useLogin from '@/hooks/mutations/useLogin'
 import { useState } from 'react'
 import { useForm } from "react-hook-form"
-import { useNavigate } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import { IoMdEye } from "react-icons/io";
+import { IoMdEyeOff } from "react-icons/io";
 
 type FormData = {
     email: string,
     password: string,
-  }
+}
+
+
 const LoginUser = () => {
 
     const [showPassword, setShowPassword] = useState(false)
@@ -24,18 +28,20 @@ const LoginUser = () => {
 
     const onSubmit = (data:FormData) => {
         mutate(data, {
-          onSuccess: (details) => {
-            console.log('This is data', details);
-            // localStorage.setItem("accessToken", details?.data?.token?.access);
-            console.log('Login successful')
-            // navigate('/auth/dashboard', { replace: true })
-          },
-          onError: (error) => {
-            console.error('Login failed:', error.message)
-            // setError(error.message)
-          },
+            onSuccess: (details) => {
+                console.log('This is data', details?.data?.access);
+                localStorage.setItem("accessToken", details?.data?.access);
+                navigate('/dashboard', { replace: true })
+            },
+            onError: (error:any) => {
+                if (error){
+                    console.log('Login failed:', error?.response?.data?.detail)
+                    toast(error?.response?.data?.detail)
+                } 
+            },  
         })
     }
+
   return (
     <div className='flex justify-center items-center lg:min-h-screen lg:p-0 px-5 pt-[10rem]'>
         <form action="" onSubmit={handleSubmit(onSubmit)} className='lg:w-[28%] w-full'>
@@ -44,28 +50,37 @@ const LoginUser = () => {
                 <p>Welearn is your go-to platform.</p>
             </div>
 
+            <ToastContainer theme='light' autoClose={4000}/>
+
             <div className='w-full flex flex-col gap-6 pt-5'>
                 <div>
                     <input 
                         {...register('email', {required: true})} 
-                        type="text" placeholder="Enter Email" 
+                        type="email" placeholder="Enter Email" 
                         className=" text-sm py-6 input input-bordered w-full" 
                     />
                     <p className='text-xs pt-2 text-red-500'>{errors.email && 'Email is Required'}</p>
+                
                 </div>
 
-                <div>
+                <div className='relative'>
                     <input 
                         {...register('password', {required: true})}
-                        type="text" placeholder="Enter Password" 
-                        className=" text-sm py-6 input input-bordered w-full" 
+                        type={`${showPassword ? 'password' : 'text'}`} 
+                        placeholder="Enter Password" 
+                        className="text-sm py-6 input input-bordered w-full" 
                     />
+
+                    <button onClick={()=>setShowPassword(!showPassword)} type='button' className='absolute right-0 text-xl top-0 p-4'>{showPassword ? <p><IoMdEye /></p>: <p><IoMdEyeOff /></p>}</button>
                     <p className='text-xs pt-2 text-red-500'>{errors.password && 'Password is Required'}</p>
                     <p className='text-right text-sm pt-3 text-neutral-500 cursor-pointer'>Forgotten Password?</p>
                 </div>
 
                 <div>
-                    <CustomizedButtonMain text='Login'/>
+                    {isPending ? 
+                        <CustomizedButtonLoading text='Loading'/> :
+                        <CustomizedButtonMain text='Login'/>
+                    }
                 </div>
 
                 <div className='flex lg:items-center gap-2 lg:m-auto'>
@@ -78,7 +93,11 @@ const LoginUser = () => {
                 </div>
 
                 <div className='text-xs text-center'>
-                    <p>Don’t have an account? <span className='text-[#00C0EA] font-semibold cursor-pointer pl-1'>Signup</span></p>
+                    <p>Don’t have an account?
+                        <Link to={'/register'}>
+                            <span className='text-[#00C0EA] font-semibold cursor-pointer pl-1'>Signup</span>
+                        </Link>
+                    </p>
                 </div>
             </div>
         </form>

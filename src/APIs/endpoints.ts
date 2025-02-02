@@ -1,6 +1,6 @@
 
 // LOGIN
-export const LOGIN_ENDPOINT = "/api/user/";
+export const LOGIN_ENDPOINT = "/api/token/";
 
 
 //CONTACT US
