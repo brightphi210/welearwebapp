@@ -1,8 +1,7 @@
-import React from 'react'
-
 const StudentSideBar = () => {
+
   return (
-    <div className='bg-neutral-100 p-10 h-screen fixed w-[20rem] z-30'>
+    <div className='bg-neutral-100 p-10 h-screen fixed lg:w-[20rem] z-30'>
         <ul className='space-y-5'>
             <li>Dashboard</li>
             <li>My Courses</li>
