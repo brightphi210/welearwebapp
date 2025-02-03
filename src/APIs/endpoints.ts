@@ -4,7 +4,7 @@ export const LOGIN_ENDPOINT = "/api/token/";
 
 
 //CONTACT US
-export const CONTACT_US_ENDPOINT = "/api/cms/contact-us/"
+export const INSTRUCTORSGET_ENDPOINT = "/api/instructor-profiles/"
 
 //EMPLOYEE
 
