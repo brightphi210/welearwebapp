@@ -3,18 +3,14 @@
 export const LOGIN_ENDPOINT = "/api/token/";
 
 
-//CONTACT US
+//INSTRUCTORS
 export const INSTRUCTORSGET_ENDPOINT = "/api/instructor-profiles/"
 
-//EMPLOYEE
+//STUDENT PROFILE
+export const STUDENTPROFILE = (id:number) =>`/api/student-profiles/update/${id}/`
 
-export const EMPLOYEE_LIST_ENDPOINT = "/api/employee/"
-// export const EMPLOYEE_CREATE_ENDPOINT = "/api/employee/create/"
-// export const EMPLOYEE_UPDATE_ENDPOINT = "/api/employee/update/"
-// export const EMPLOYEE_DELETE_ENDPOINT = "/api/employee/delete/"
-
-//TASK ENDPOINT
-export const TASK_ENDPOINT_CREATE = "/api/cms/tax-payer/"
+//INSTRUCTOR GET ENDPOINT
+export const SINGLE_INSTRUCTOR = (id:number)=> `/api/instructor-profiles/update/${id}/`
 
 // LOGO ENDPOINT
 export const LOGO_ENDPOINT = "/api/cms/logo/"

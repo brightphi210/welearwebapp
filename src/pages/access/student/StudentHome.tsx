@@ -1,5 +1,4 @@
 import { CustomizedButtonOutline } from "@/Compnents/UI/CustomizedButton"
-import StudentSideBar from "./StudentSideBar"
 import { profileImage } from "@/Compnents/images/imagePath"
 import Loading from "@/Compnents/UI/Loading"
 import useInstructorGet from "@/hooks/queries/useInstructorGet"
@@ -7,8 +6,11 @@ import { IoFilterSharp } from "react-icons/io5"
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
-
+import { Link } from "react-router-dom"
+import StudentSideBar from "./StudentSideBar"
 import { useState } from "react"
+import useGetSingleStudent from "@/hooks/queries/useGetSingleStudent"
+import { useAuth } from "@/Providers/AuthContext"
 
 
 interface Instructor {
@@ -22,25 +24,24 @@ interface Instructor {
   is_verified : boolean
 }
 
+
 const StudentHome = () => {
+
+  const {decodedToken} = useAuth()
   const { data, isLoading } = useInstructorGet()
   const instructors: Instructor[] = data?.data || []
+  const {data: myData } = useGetSingleStudent(decodedToken?.profile_id ?? 0);
 
-  const [isOpened, setIsOpend] = useState(false)
+  console.log('This is user details', myData);
 
-  const toggleDrawer = () => setIsOpend(!isOpened)
-  
-  console.log("This is the instructors data:", data)
+  const [isOpened, setIsOpened] = useState(false)
+  const toggleDrawer = () => setIsOpened(!isOpened)
 
   return (
     <div className="flex relative">
-        <div className={`lg:block ${isOpened ===true ? 'block' : 'hidden'}`}>
-            <StudentSideBar />
-        </div>
-
       <div className="w-full">
         {/* Top Navigation Bar */}
-        <div className="flex fixed pt-4 pb-4 w-full z-50 bg-white items-center justify-between border-b border-neutral-200 lg:px-20 lg:pl-96 px-5">
+        <div className="flex fixed pt-3 pb-3 w-full z-50 bg-white items-center justify-between border-b border-neutral-200 lg:px-10  px-5">
             <div className="flex gap-5 items-center">
 
                 <div className="lg:hidden block " onClick={toggleDrawer}>
@@ -57,9 +58,12 @@ const StudentHome = () => {
           </div>
         </div>
 
+        <StudentSideBar isOpened={isOpened}/>
+
+
         {/* Main Content */}
-        <div className="pt-28 h-full w-full lg:px-20 lg:pl-96 px-5 overflow-y-scroll">
-          <h2 className="text-xl font-semibold">Welcome Back, Kingsley</h2>
+        <div className="pt-24 h-full w-full lg:px-20 lg:pl-96 px-5 overflow-y-scroll">
+          <h2 className="text-xl font-semibold">Welcome Back, {myData?.data?.user?.name}</h2>
 
           {/* Search Bar & Filter */}
           <div className="flex items-center pt-3 justify-between w-full">
@@ -76,7 +80,7 @@ const StudentHome = () => {
             </div>
           ) : (
             instructors.length > 0 && (
-              <div className="grid lg:grid-cols-4 grid-cols-1 gap-5 pt-5">
+              <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
                 {instructors.map((instructor: Instructor, index: number) => (
                   <div key={instructor.id || index} className="border border-neutral-200 rounded-lg p-5 hover:bg-neutral-100">
                     <div className="flex items-center gap-4">
@@ -106,7 +110,9 @@ const StudentHome = () => {
                     </div>
 
                     <div className="pt-8">
-                      <CustomizedButtonOutline text="View Details" />
+                      <Link to={`/dashboard/student/tutor/${instructor?.id}`}>
+                        <CustomizedButtonOutline text="View Details" />
+                      </Link>
                     </div>
                   </div>
                 ))}

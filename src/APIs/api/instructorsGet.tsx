@@ -1,5 +1,5 @@
 import { base_url } from "../base"
-import { INSTRUCTORSGET_ENDPOINT } from "../endpoints"
+import { INSTRUCTORSGET_ENDPOINT, SINGLE_INSTRUCTOR } from "../endpoints"
 
 interface UserProps {
   id: number
@@ -31,4 +31,5 @@ interface InstructorProps {
 
 
 export const instructorGetApi = (params?: InstructorProps) => base_url.get(INSTRUCTORSGET_ENDPOINT, { params })
+export const singleInstructorGetApi = (userId: number) => base_url.get(SINGLE_INSTRUCTOR(userId))
 

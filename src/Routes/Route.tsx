@@ -8,6 +8,9 @@ import { Routes, Route } from 'react-router-dom';
 import LoginUser from '@/pages/noaccess/onboarding/LoginUser';
 import RegisterParent from '@/pages/noaccess/onboarding/RegisterParent';
 import RegisterTutor from '@/pages/noaccess/onboarding/RegisterTutor';
+import AllHiredTutors from '@/pages/access/student/AllHiredTutors';
+import IndividualInstructor from '@/pages/access/student/IndividualInstructor';
+import StudentHome from '@/pages/access/student/StudentHome';
 
 const AllRoute = () => {
   return (
@@ -20,8 +23,12 @@ const AllRoute = () => {
       <Route path="/login/user" element={<LoginUser />} />
       <Route path="/register/parent" element={<RegisterParent />} />
       <Route path="/register/tutor" element={<RegisterTutor />} />
+      <Route path="*" element={<NotFound />} /> 
+      
       <Route path="/dashboard" element={<DashHome />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="/dashboard/student" element={<StudentHome />} />
+      <Route path="/dashboard/student/all-hire-tutors" element={<AllHiredTutors />} />
+      <Route path="/dashboard/student/tutor/:id" element={<IndividualInstructor />} />
     </Routes>
   );
 };

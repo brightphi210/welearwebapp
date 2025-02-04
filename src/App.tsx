@@ -6,6 +6,7 @@ import AuthProvider from "./Providers/AuthProvider";
 import AllRoute from "./Routes/Route";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Provider } from "./Providers/AuthContext";
 AOS.init();
 
 function App() {
@@ -20,11 +21,13 @@ function App() {
 
   return (
     <QueryProvider>
-      <BrowserRouter>
-        <AuthProvider>
-            <AllRoute />
-        </AuthProvider>
-      </BrowserRouter>
+        <BrowserRouter>
+            <Provider>
+              <AuthProvider>
+                <AllRoute />
+              </AuthProvider>
+            </Provider>
+        </BrowserRouter>
     </QueryProvider>
   );
 }

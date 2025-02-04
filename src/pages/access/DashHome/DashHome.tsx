@@ -1,56 +1,22 @@
 import type React from "react"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { jwtDecode } from "jwt-decode"
+import { useState } from "react"
+import { useLocation } from "react-router-dom"
+import { useAuth } from "@/Providers/AuthContext"
 import StudentHome from "../student/StudentHome"
-
-interface DecodedToken {
-  exp: number
-  iat: number
-  name: string
-  user_id: string
-  email: string
-  user_type: string
-  profile_id: number
-}
+import AllHiredTutors from "../student/AllHiredTutors"
+import StudentSideBar from "../student/StudentSideBar"
 
 const Dashboard: React.FC = () => {
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken")
-    navigate("/login")
-  }
-
-  const [decodedToken, setDecodedToken] = useState<DecodedToken | null>(null)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken")
-    console.log("This is token", accessToken)
-
-    if (accessToken) {
-      try {
-        const decoded = jwtDecode<DecodedToken>(accessToken)
-        setDecodedToken(decoded)
-        console.log("Decoded token:", decoded)
+  const { decodedToken, handleLogout } = useAuth()
+  const location = useLocation()
   
-      } catch (error) {
-        console.error("Error decoding token:", error)
-        localStorage.removeItem("accessToken")
-        navigate("/login")
-      }
-    } else {
-      console.log("No token found")
-      navigate("/login")
-    }
-  }, [navigate])
 
   if (!decodedToken) {
     return <div>Loading...</div>
   }
-  return (
-  <>
-    {decodedToken?.user_type === 'Student' ? 
-      <StudentHome /> : 
+
+  if (decodedToken?.user_type !== "Student") {
+    return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Dashboard</h1>
         <p className="mb-4">You are now logged in.</p>
@@ -61,8 +27,17 @@ const Dashboard: React.FC = () => {
           Logout
         </button>
       </div>
-    }
-  </>
+    )
+  }
+
+  return (
+    <div className="flex">
+      <StudentSideBar isOpened={isOpened} />
+      <div className="flex-1">
+        {location.pathname === "/dashboard/user" && <StudentHome toggleDrawer={toggleDrawer} isOpened={isOpened} />}
+        {location.pathname === "/all-hire-tutors" && <AllHiredTutors toggleDrawer={toggleDrawer} isOpened={isOpened} />}
+      </div>
+    </div>
   )
 }
 

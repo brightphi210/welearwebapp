@@ -37,7 +37,7 @@ const LoginUser = () => {
             onSuccess: (details) => {
                 console.log('This is data', details?.data?.access);
                 localStorage.setItem("accessToken", details?.data?.access);
-                navigate('/dashboard', { replace: true })
+                navigate('/dashboard/student', { replace: true })
             },
             onError: (error) => {
                 const err = error as ErrorResponse;
