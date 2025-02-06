@@ -1,16 +1,14 @@
 import { CustomizedButtonOutline } from "@/Compnents/UI/CustomizedButton"
-import { profileImage } from "@/Compnents/images/imagePath"
 import Loading from "@/Compnents/UI/Loading"
 import useInstructorGet from "@/hooks/queries/useInstructorGet"
 import { IoFilterSharp } from "react-icons/io5"
 import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { RiMenu2Fill } from "react-icons/ri";
-import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom"
 import StudentSideBar from "./StudentSideBar"
 import { useState } from "react"
 import useGetSingleStudent from "@/hooks/queries/useGetSingleStudent"
 import { useAuth } from "@/Providers/AuthContext"
+import StudentTopNavbar from "./StudentTopNavbar"
 
 
 interface Instructor {
@@ -22,6 +20,9 @@ interface Instructor {
   bio_data?: string
   occupation?: string
   is_verified : boolean
+  classes: {
+    class_name: string;
+  }[];
 }
 
 
@@ -32,8 +33,6 @@ const StudentHome = () => {
   const instructors: Instructor[] = data?.data || []
   const {data: myData } = useGetSingleStudent(decodedToken?.profile_id ?? 0);
 
-  console.log('This is user details', myData);
-
   const [isOpened, setIsOpened] = useState(false)
   const toggleDrawer = () => setIsOpened(!isOpened)
 
@@ -41,28 +40,11 @@ const StudentHome = () => {
     <div className="flex relative">
       <div className="w-full">
         {/* Top Navigation Bar */}
-        <div className="flex fixed pt-3 pb-3 w-full z-50 bg-white items-center justify-between border-b border-neutral-200 lg:px-10  px-5">
-            <div className="flex gap-5 items-center">
-
-                <div className="lg:hidden block " onClick={toggleDrawer}>
-                    {!isOpened ? 
-                        <p className="text-xl bg-neutral-100 p-2.5 rounded-full" ><RiMenu2Fill /></p> : 
-                        <p className="text-xl bg-neutral-100 p-2.5 rounded-full"><IoMdClose /></p>
-                    }
-                </div>
-
-                <h2 className="text-[#00C0EA] text-lg font-semibold">Welearn</h2>
-            </div>
-          <div className="w-10 h-10">
-            <img src={profileImage?.porfileImg || "/placeholder.svg"} alt="Profile" />
-          </div>
-        </div>
-
+        <StudentTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
         <StudentSideBar isOpened={isOpened}/>
 
-
         {/* Main Content */}
-        <div className="pt-24 h-full w-full lg:px-20 lg:pl-96 px-5 overflow-y-scroll">
+        <div className="pt-24 h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-5 overflow-y-scroll">
           <h2 className="text-xl font-semibold">Welcome Back, {myData?.data?.user?.name}</h2>
 
           {/* Search Bar & Filter */}
@@ -94,7 +76,7 @@ const StudentHome = () => {
                       <div className="flex gap-3">
                         <div>
                             <h2 className="text-sm font-semibold">{instructor?.user?.name || "Unknown"}</h2>
-                            <p className="text-xs text-neutral-400">{instructor?.occupation || "Empty"}</p>
+                            <p className="text-xs text-neutral-500 pt-1">{instructor?.classes[0]?.class_name.toUpperCase() || "No Assigned Class"}</p>
                         </div>
 
                         {instructor?.is_verified && 

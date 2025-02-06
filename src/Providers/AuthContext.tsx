@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react"
 import { jwtDecode } from "jwt-decode"
 import { useNavigate } from "react-router-dom"
 
-interface DecodedToken {
+export interface DecodedToken {
   exp: number
   iat: number
   name: string
@@ -14,6 +14,7 @@ interface DecodedToken {
 
 interface AuthContextType {
   decodedToken: DecodedToken | null
+  setDecodedToken: (token: DecodedToken | null) => void
   handleLogout: () => void
 }
 
@@ -22,6 +23,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [decodedToken, setDecodedToken] = useState<DecodedToken | null>(null)
   const navigate = useNavigate()
+  
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken")
@@ -35,12 +37,12 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
       } catch (error) {
         console.error("Error decoding token:", error)
-        // localStorage.removeItem("accessToken")
+        localStorage.removeItem("accessToken")
         // navigate("/login")
       }
     } else {
       console.log("No token found")
-      // navigate("/login")
+      // navigate("/login/user")
     }
   }, [navigate])
 
@@ -51,7 +53,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) 
   }
 
   return (
-    <AuthContext.Provider value={{ decodedToken, handleLogout }}>
+    <AuthContext.Provider value={{ decodedToken, handleLogout, setDecodedToken }}>
       {children}
     </AuthContext.Provider>
   )

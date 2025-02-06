@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
+import { jwtDecode } from "jwt-decode"
 
 type FormData = {
     email: string,
@@ -18,10 +19,15 @@ interface ErrorResponse {
         detail?: string
       }
     }
-  }
+}
 
+interface DecodedToken {
+    user_type: string
+    // Add other properties as needed
+}
 
 const LoginUser = () => {
+
     const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate()
     const {isPending, mutate} = useLogin()
@@ -32,20 +38,40 @@ const LoginUser = () => {
         formState: { errors }
     } = useForm<FormData>()
 
-    const onSubmit = (data:FormData) => {
+    const onSubmit = (data: FormData) => {
         mutate(data, {
-            onSuccess: (details) => {
-                console.log('This is data', details?.data?.access);
-                localStorage.setItem("accessToken", details?.data?.access);
-                navigate('/dashboard/student', { replace: true })
-            },
-            onError: (error) => {
-                const err = error as ErrorResponse;
-                console.log('Login failed:', err?.response?.data?.detail)
-                toast(err?.response?.data?.detail || "An error occurred")
-            },  
+          onSuccess: (details) => {
+            console.log("This is data", details?.data?.access)
+            const accessToken = details?.data?.access
+            localStorage.setItem("accessToken", accessToken)
+    
+            // Decode the token immediately
+            try {
+              const decodedToken = jwtDecode<DecodedToken>(accessToken)
+              console.log("Decoded token:", decodedToken)
+    
+              // Use the decoded token for redirection
+              if (decodedToken.user_type === "Student") {
+                navigate("/dashboard/student", { replace: true })
+              } else if (decodedToken.user_type === "Instructor") {
+                navigate("/dashboard/instructor", { replace: true })
+              } else {
+                // Handle unexpected user types
+                console.error("Unknown user type:", decodedToken.user_type)
+                toast("Login successful, but user type is unknown")
+              }
+            } catch (error) {
+              console.error("Error decoding token:", error)
+              toast("Login successful, but there was an error processing your information")
+            }
+          },
+          onError: (error) => {
+            const err = error as ErrorResponse
+            console.log("Login failed:", err?.response?.data?.detail)
+            toast(err?.response?.data?.detail || "An error occurred")
+          },
         })
-    }
+      }
 
   return (
     <div className='flex justify-center items-center lg:min-h-screen lg:p-0 px-5 pt-[10rem]'>

@@ -22,7 +22,7 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
   const studentProfileData = data?.data
 
   return (
-    <div className={`lg:block ${isOpened ? "block" : "hidden"} bg-neutral-100 p-10 h-screen fixed 2xl:w-[20rem] xl:w-[15rem] lg:w-[15rem] w-[100%] z-30`}>
+    <div className={`lg:block ${isOpened ? "block" : "hidden"} bg-neutral-100 p-10 h-screen fixed 2xl:w-[16rem] xl:w-[15rem] lg:w-[15rem] w-[100%] z-30`}>
 
         {isLoading ? 
           <div className="pt-20">
@@ -44,19 +44,19 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
 
 
 
-        <ul className='flex flex-col gap-10 text-sm pt-6'>
+        <ul className='flex flex-col gap-10 text-xs pt-6'>
             <Link to={'/dashboard/student'}>
-              <li className="flex items-center gap-3 font-semibold"><FiHome className="text-lg"/>Home</li>
+              <li className="flex items-center gap-3 font-semibold"><FiHome className="text-lg text-[#00C0EA]"/>Home</li>
             </Link>
 
             <Link to={'/dashboard/student/account'}>
-              <li className="flex items-center gap-3 font-semibold"><FaRegUser className="text-lg"/>Account</li>
+              <li className="flex items-center gap-3 font-semibold"><FaRegUser className="text-lg text-[#00C0EA]"/>Account</li>
             </Link>
 
             <Link to={'/dashboard/student/all-hire-tutors'}>
-              <li className="flex items-center gap-3 font-semibold"><FiUsers className="text-lg"/>All Hired Tutors</li>
+              <li className="flex items-center gap-3 font-semibold"><FiUsers className="text-lg text-[#00C0EA]"/>All Hired Tutors</li>
             </Link>
-            <li className="flex items-center gap-3 font-semibold"><RiLockPasswordLine className="text-lg"/>Change Password</li>
+            <li className="flex items-center gap-3 font-semibold"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Change Password</li>
 
             <li onClick={handleLogout} className="flex items-center gap-3 font-semibold bg-[#00C0EA] w-fit p-2.5 px-6 text-white rounded-full"><RiLogoutCircleRLine className="text-lg"/>Logout</li>
         </ul>

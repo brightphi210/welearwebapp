@@ -8,6 +8,7 @@ export const INSTRUCTORSGET_ENDPOINT = "/api/instructor-profiles/"
 
 //STUDENT PROFILE
 export const STUDENTPROFILE = (id:number) =>`/api/student-profiles/update/${id}/`
+export const STUDENT_PROFILE_UPDATE = (id:number) =>`/api/student-profiles/update/${id}/`
 
 //INSTRUCTOR GET ENDPOINT
 export const SINGLE_INSTRUCTOR = (id:number)=> `/api/instructor-profiles/update/${id}/`
