@@ -35,7 +35,7 @@ const StudentTopNavbar = ({toggleDrawer, isOpened}: MyProps) => {
         <h2 className="text-[#00C0EA] text-lg font-semibold">Welearn</h2>
       </div>
       <div className="w-10 h-10 overflow-hidden bg-neutral-300 rounded-full">
-        <img className='w-full h-full' src={myData?.profile_pic || profileImage?.porfileImg} alt="Profile" />
+        <img className='w-full h-full object-cover' src={myData?.profile_pic || profileImage?.porfileImg} alt="Profile" />
       </div>
     </div></div>
   )

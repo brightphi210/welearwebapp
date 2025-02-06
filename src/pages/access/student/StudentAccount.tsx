@@ -83,7 +83,7 @@ const StudentAccount = () => {
                   <div className="flex items-center gap-3 pt-5">
                     <div className="w-12 h-12 overflow-hidden bg-neutral-300 border border-neutral-200 rounded-full">
                       <img
-                        className="w-full h-full"
+                        className="w-full h-full object-cover"
                         src={myData?.profile_pic || profileImage?.porfileImg}
                         alt="Profile"
                       />
