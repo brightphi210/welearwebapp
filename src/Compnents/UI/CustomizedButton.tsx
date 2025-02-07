@@ -12,6 +12,12 @@ export const CustomizedButtonMain:React.FC<ButtonProps> = ({text, onClick}) => {
   )
 }
 
+export const CustomizedDisableButtonMain:React.FC<ButtonProps> = ({text, onClick}) => {
+  return (
+    <button type="button" className="bg-[#00C0EA] text-white py-3 w-full text-sm font-semibold rounded-full text-center" onClick={onClick}>{text}</button>
+  )
+}
+
 
 export const CustomizedButtonWhite:React.FC<ButtonProps> = ({text, onClick}) => {
   return (

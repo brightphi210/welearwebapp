@@ -13,8 +13,8 @@ export const STUDENT_PROFILE_UPDATE = (id:number) =>`/api/student-profiles/updat
 //INSTRUCTOR GET ENDPOINT
 export const SINGLE_INSTRUCTOR = (id:number)=> `/api/instructor-profiles/update/${id}/`
 
-// LOGO ENDPOINT
-export const LOGO_ENDPOINT = "/api/cms/logo/"
+// HIRING INSTRUCTOR ENDPOINT
+export const HIRING_INSTRUCTOR_ENDPOINT = "/api/class-bookings/"
 
 //FAQs
 export const FAQS_ENDPOINT_GET = "/api/cms/faqs/"
