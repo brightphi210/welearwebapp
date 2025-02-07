@@ -65,7 +65,7 @@ const StudentHome = () => {
               <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
                 {instructors.map((instructor: Instructor, index: number) => (
                   <div key={instructor.id || index} className="border border-neutral-200 rounded-lg p-5 hover:bg-neutral-100">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 pb-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden">
                         <img
                           src={instructor?.profile_pic || "/default-profile.jpg"}
@@ -75,8 +75,8 @@ const StudentHome = () => {
                       </div>
                       <div className="flex gap-3">
                         <div>
-                            <h2 className="text-sm font-semibold">{instructor?.user?.name || "Unknown"}</h2>
-                            <p className="text-xs text-neutral-500 pt-1">{instructor?.classes[0]?.class_name.toUpperCase() || "No Assigned Class"}</p>
+                            <h2 className="text-sm font-bold">{instructor?.user?.name || "Unknown"}</h2>
+                            <p className="text-xs text-neutral-500 font-semibold pt-1">{instructor?.classes[0]?.class_name.toUpperCase() || "No Assigned Class"}</p>
                         </div>
 
                         {instructor?.is_verified && 
@@ -86,8 +86,8 @@ const StudentHome = () => {
                     </div>
                     <div>
                         {instructor?.bio_data ? 
-                            <p className="text-xs pt-3 text-neutral-600">{instructor?.bio_data.slice(0, 60)} {instructor?.bio_data.length > 60 && '...'}</p> :
-                            <p className="text-xs pt-3 text-neutral-600">No bio available</p> 
+                            <p className="text-sm pt-3 text-neutral-600">{instructor?.bio_data.slice(0, 80)} {instructor?.bio_data.length > 80 && '...'}</p> :
+                            <p className="text-sm pt-3 text-neutral-600">No bio available</p> 
                         }
                     </div>
 

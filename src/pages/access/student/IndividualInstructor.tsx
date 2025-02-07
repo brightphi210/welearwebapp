@@ -60,16 +60,16 @@ const IndividualInstructor = () => {
                   </div>
                   </Link>
 
-                  <div className='pt-8 space-y-4 lg:w-[50%] w-full'>
+                  <div className='pt-8 space-y-4 lg:!w-[50%] w-full'>
                     <div className='flex justify-between'>
                       <h2 className='font-semibold text-sm'>Bio Data</h2>
-                      <p className='text-sm text-green-600 font-semibold'>{individualInstructorData?.classes[0]?.price && <span> &#8358; {individualInstructorData?.classes[0]?.price} </span>}</p>
+                      <p className='text-lg text-green-600 font-semibold'>{individualInstructorData?.classes[0]?.price && <span> &#8358; {individualInstructorData?.classes[0]?.price} </span>}</p>
                     </div>
                     <p className='text-sm'>{individualInstructorData?.bio_data}</p>
                   </div>
 
-                  <div className='border border-neutral-300 p-5 mt-8 rounded-lg lg:w-[50%] w-full'>
-                    <div className='space-y-4 text-xs border-b border-neutral-200 pb-8'>
+                  <div className='border border-neutral-300 p-5 mt-8 rounded-lg lg:!w-[50%] w-full'>
+                    <div className='space-y-4 text-sm border-b border-neutral-200 pb-8'>
                       <h2 className='font-semibold text-sm'>Work Data</h2>
                       <ul className='space-y-5'>
                         <li className='text-neutral-500'>Trained: <span className='font-medium text-black'>{individualInstructorData?.number_of_trained_students || '0'} Users</span></li>
@@ -77,7 +77,7 @@ const IndividualInstructor = () => {
                       </ul>
                     </div>
 
-                    <div className='pt-8 space-y-4 text-xs '>
+                    <div className='pt-8 space-y-4 text-sm '>
                       <h2 className='font-semibold text-sm'>Location Data</h2>
                       <ul className='space-y-5'>
                         <li className='text-neutral-500'>Location: <span className='font-medium text-black'>{individualInstructorData?.location || 'N/A'}</span></li>
@@ -87,7 +87,7 @@ const IndividualInstructor = () => {
                     </div>
                   </div>
 
-                  <div className='pt-10 lg:w-[20%] w-full'>
+                  <div className='pt-10 lg:!w-[20%] w-full'>
                     <CustomizedButtonMain text='Hire Me'/>
                   </div>
                 </div>
