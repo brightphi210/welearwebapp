@@ -27,13 +27,13 @@ export const CustomizedButtonWhite:React.FC<ButtonProps> = ({text, onClick}) => 
 
 export const CustomizedButtonOutline:React.FC<ButtonProps> = ({text, onClick}) => {
   return (
-    <button className="text-[#00C0EA] border border-[#00C0EA] text-sm font-semibold bg-white py-2.5 w-full rounded-full text-center" onClick={onClick}>{text}</button>
+    <button className="text-[#00C0EA] border-2 border-[#00C0EA] text-sm font-semibold bg-white py-2.5 w-full rounded-full text-center" onClick={onClick}>{text}</button>
   )
 }
 
 export const CustomizedDisableButtonOutline:React.FC<ButtonProps> = ({text, onClick}) => {
   return (
-    <button type="button" className="text-[#00C0EA] border border-[#00C0EA] text-sm font-semibold bg-white py-2.5 w-full rounded-full text-center" onClick={onClick}>{text}</button>
+    <button type="button" className="text-[#00C0EA] border-2 border-[#00C0EA] text-sm font-semibold bg-white py-2.5 w-full rounded-full text-center" onClick={onClick}>{text}</button>
   )
 }
 

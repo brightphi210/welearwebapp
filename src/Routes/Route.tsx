@@ -15,6 +15,7 @@ import InstructorHome from '@/pages/access/instructor/InstructorHome';
 import IndividualHiredTutors from '@/pages/access/student/IndividualHiredTutors';
 import StudentFAQs from '@/pages/access/student/StudentFAQs';
 import CustomerCare from '@/pages/noaccess/CustomerCare';
+import StudentPasswordUpdate from '@/pages/access/student/StudentPasswordUpdate';
 
 const AllRoute = () => {
   return (
@@ -39,6 +40,7 @@ const AllRoute = () => {
       <Route path="/dashboard/student/hired/tutor/:id" element={<IndividualHiredTutors />} />
       <Route path="/dashboard/student/account" element={<StudentAccount />} />
       <Route path="/dashboard/student/faqs" element={<StudentFAQs />} />
+      <Route path="/dashboard/student/password-update" element={<StudentPasswordUpdate />} />
     </Routes>
   );
 };

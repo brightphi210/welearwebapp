@@ -20,5 +20,5 @@ export const HIRING_INSTRUCTOR_ENDPOINT = "/api/class-bookings/"
 export const STUDENT_REMARK = "/api/student-remarks/"
 export const STUDENT_REMARK_POST = "/api/student-remarks/"
 
-//TESTOMINIES
-export const TESTIMONIALS_ENDPOINT_GET = "/api/cms/testimonial/"
+//PASSWORD UPDATE
+export const STUDENT_PASSWORD_UPDATE = "/api/change-password/"

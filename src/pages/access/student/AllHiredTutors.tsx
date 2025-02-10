@@ -58,7 +58,7 @@ const AllHiredTutors = () => {
               {myHiredTutors.length > 0 ? (
                 <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
                   {myHiredTutors.map((instructor: Instructor, index: number) => (
-                    <div key={instructor?.instructor?.id || index} className="border border-neutral-200 rounded-lg p-5 hover:bg-neutral-100">
+                    <div key={instructor?.instructor?.id || index} className="border-2 border-neutral-200 rounded-xl p-5 hover:bg-neutral-100">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden">
                           <img
@@ -84,8 +84,8 @@ const AllHiredTutors = () => {
                       </div>
                       <div className="pt-3">
                           {instructor?.instructor?.bio_data ? 
-                              <p className="text-xs pt-3 text-neutral-600">{instructor?.instructor?.bio_data.slice(0, 60)} {instructor?.instructor?.bio_data.length > 60 && '...'}</p> :
-                              <p className="text-xs pt-3 text-neutral-600">No bio available</p> 
+                              <p className="text-sm pt-3 text-neutral-600">{instructor?.instructor?.bio_data.slice(0, 60)} {instructor?.instructor?.bio_data.length > 60 && '...'}</p> :
+                              <p className="text-sm pt-3 text-neutral-600">No bio available</p> 
                           }
                       </div>
 
