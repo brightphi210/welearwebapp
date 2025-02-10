@@ -73,7 +73,7 @@ const AllHiredTutors = () => {
                               <div className="flex items-center gap-2 pt-1">
                                 <p className="text-xs text-neutral-700 font-semibold">{instructor?.class_booked?.class_name.toUpperCase() || "No Assigned Class"}</p>
                                 <p className="text-xs text-neutral-500"><GoDotFill /></p>
-                                <p className="text-xs text-[#00C0EA] font-semibold">{instructor?.isPayed === null ? <>Pending</> : <>Hired</>}</p>
+                                <p className="text-xs text-[#00C0EA] font-semibold">{instructor?.isPayed === null ? <p className="text-yellow-500">Pending</p> : <p>Hired</p>}</p>
                               </div>
                           </div>
 

@@ -13,6 +13,8 @@ import StudentHome from '@/pages/access/student/StudentHome';
 import StudentAccount from '@/pages/access/student/StudentAccount';
 import InstructorHome from '@/pages/access/instructor/InstructorHome';
 import IndividualHiredTutors from '@/pages/access/student/IndividualHiredTutors';
+import StudentFAQs from '@/pages/access/student/StudentFAQs';
+import CustomerCare from '@/pages/noaccess/CustomerCare';
 
 const AllRoute = () => {
   return (
@@ -25,6 +27,7 @@ const AllRoute = () => {
       <Route path="/login/user" element={<LoginUser />} />
       <Route path="/register/parent" element={<RegisterParent />} />
       <Route path="/register/tutor" element={<RegisterTutor />} />
+      <Route path="/dashboard/welearn/cutomer-care" element={<CustomerCare />} />
       <Route path="*" element={<NotFound />} /> 
       
       <Route path="/dashboard/instructor" element={<InstructorHome />} />
@@ -35,6 +38,7 @@ const AllRoute = () => {
       <Route path="/dashboard/student/tutor/:id" element={<IndividualInstructor />} />
       <Route path="/dashboard/student/hired/tutor/:id" element={<IndividualHiredTutors />} />
       <Route path="/dashboard/student/account" element={<StudentAccount />} />
+      <Route path="/dashboard/student/faqs" element={<StudentFAQs />} />
     </Routes>
   );
 };

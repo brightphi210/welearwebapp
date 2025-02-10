@@ -11,7 +11,6 @@ import { Modal } from '@brightcodeui/beta-ui';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/Providers/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
-import { HiOutlineStatusOnline } from "react-icons/hi";
 import useGetStudentRemarks from '@/hooks/queries/useGetStudentRemarks';
 import useGetSingleStudent from '@/hooks/queries/useGetSingleStudent';
 import { CgNotes } from "react-icons/cg";
@@ -21,6 +20,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { VscEmptyWindow } from "react-icons/vsc";
 import usePostRemark from '@/hooks/mutations/usePostRemark';
 import { RemarkProps } from '@/APIs/api/studentRemarks';
+import { MdOutlinePendingActions } from "react-icons/md";
+import { VscVmActive } from "react-icons/vsc";
 
 
 
@@ -77,8 +78,8 @@ const navigate = useNavigate()
   const myData = studentData?.data
 
   console.log('THis my Instructor Data', individualInstructorData)
-  console.log('THis my my Data', myData)
-  console.log('THis is remark data', remarks)
+//   console.log('THis my my Data', myData)
+//   console.log('THis is remark data', remarks)
 
 
   const {mutate, isPending} = usePostRemark()
@@ -151,7 +152,11 @@ const navigate = useNavigate()
                   <div className='pt-8 space-y-2 w-full'>
                     <div className='flex justify-between'>
                       <h2 className='font-semibold text-sm'>Bio Data</h2>
-                      <p className='text-sm text-green-600 font-semibold flex items-center gap-2'><HiOutlineStatusOnline />Ongoing</p>
+                      {
+                        individualInstructorData?.allBookings[0]?.isPayed === null ?
+                        <p className='text-sm text-yellow-500 font-semibold flex items-center gap-1'><MdOutlinePendingActions className='text-base'/>Pending. .</p> :
+                        <p className='text-sm text-green-600 font-semibold flex items-center gap-2'><VscVmActive className='text-base'/>Ongoing. .</p> 
+                      }
                     </div>
                     <p className='text-sm'>{individualInstructorData?.bio_data}</p>
                     <p className='text-neutral-500'>Trained: <span className='font-medium text-black'>{individualInstructorData?.number_of_trained_students || '0'} Users</span></p>
@@ -174,47 +179,50 @@ const navigate = useNavigate()
                   </div>
 
                   <div className='pt-5 lg:!w-[50%] w-full'>
-                    {individualInstructorData?.classes.length > 0 ?
+                    {individualInstructorData?.allBookings[0]?.isPayed !== null ?
                         <div className='flex items-center gap-3'>
                             <CustomizedButtonMain text='Check/Review' onClick={()=>setIsModalOpen(true)}/> 
                             <CustomizedButtonOutline text='View Schedule' onClick={()=>setIsModalOpen(true)}/> 
                         </div>:
-                      <p className='bg-blue-100 text-blue-300 p-3 text-sm text-center rounded-full px-6 cursor-not-allowed'>No assigned class yet</p>
+                      <p className='bg-sky-300 text-sky-50 p-3 text-base text-center rounded-full px-6 cursor-not-allowed'>Payment not verified</p>
                     }
                   </div>
 
-                  <div className='pt-10'>
-                    <h2 className='text-base font-semibold flex items-center gap-2'><CgNotes className='text-lg text-sky-500'/>Remarks</h2>
-                    {isLoadingRemarks ?
-                        <p><Loading /></p>: 
-                        <div className='pt-5'>
-                            {!isLoadingRemarks && filteredRemarks.length > 0  ? (
-                                filteredRemarks.map(remark => (
-                                <div key={remark.id} className="flex items-baseline text-sm pt-3 border-t border-neutral-200 mt-2 ">
-                                    <div className='flex items-center gap-2'>
-                                        <div className='w-10 h-10 overflow-hidden rounded-full'>
-                                            <img src={myData?.profile_pic} alt="" className='w-full h-full object-cover '/>
+                    {individualInstructorData?.allBookings[0]?.isPayed !== null &&<>
+                    <div className='pt-10'>
+                        <h2 className='text-base font-semibold flex items-center gap-2'><CgNotes className='text-lg text-sky-500'/>Remarks</h2>
+
+                        {isLoadingRemarks ?
+                            <p><Loading /></p>: 
+                            <div className='pt-5'>
+                                {!isLoadingRemarks && filteredRemarks.length > 0  ? (
+                                    filteredRemarks.map(remark => (
+                                    <div key={remark.id} className="flex items-baseline text-sm pt-3 border-t border-neutral-200 mt-2 ">
+                                        <div className='flex items-center gap-2'>
+                                            <div className='w-10 h-10 overflow-hidden rounded-full'>
+                                                <img src={myData?.profile_pic} alt="" className='w-full h-full object-cover '/>
+                                            </div>
+                                            <div>
+                                                <p className='text-base font-semibold'>{myData?.user?.name}</p>
+                                                <p className='flex items-center gap-2'>{remark.content} <MdOutlineTipsAndUpdates className='text-sky-500 text-base'/></p>
+                                            </div>
                                         </div>
+                                        <p className='ml-auto flex items-center gap-2 '>{formatDate(remark?.created_at)}<IoCheckmarkSharp className='text-sky-500'/></p>
+                                        
+                                    </div>
+                                    ))
+                                ) : (
+                                    <div className='flex justify-center items-center pt-5 text-center'>
                                         <div>
-                                            <p className='text-base font-semibold'>{myData?.user?.name}</p>
-                                            <p className='flex items-center gap-2'>{remark.content} <MdOutlineTipsAndUpdates className='text-sky-500 text-base'/></p>
+                                            <p className='text-4xl text-sky-300 text-center flex justify-center m-auto'><VscEmptyWindow /></p>
+                                            <p className='text-sm pt-2 text-neutral-500'>No remarks made!</p>
                                         </div>
                                     </div>
-                                    <p className='ml-auto flex items-center gap-2 '>{formatDate(remark?.created_at)}<IoCheckmarkSharp className='text-sky-500'/></p>
-                                    
-                                </div>
-                                ))
-                            ) : (
-                                <div className='flex justify-center items-center pt-5 text-center'>
-                                    <div>
-                                        <p className='text-4xl text-sky-300 text-center flex justify-center m-auto'><VscEmptyWindow /></p>
-                                        <p className='text-sm pt-2 text-neutral-500'>No remarks made!</p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    }
-                  </div>
+                                )}
+                            </div>
+                        }
+                    </div>
+                    </>}
 
                   <div>
                       <Modal

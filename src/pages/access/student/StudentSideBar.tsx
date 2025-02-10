@@ -8,6 +8,10 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { FiHome } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
+import { FaQuestion } from "react-icons/fa6";
+import { RiCustomerServiceLine } from "react-icons/ri";
+
+
 
 
 interface StudentSideBarProps {
@@ -22,7 +26,7 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
   const studentProfileData = data?.data
 
   return (
-    <div className={`lg:!block ${isOpened ? "!block" : "!hidden"} bg-neutral-100 p-10 h-screen !fixed 2xl:w-[16rem] xl:w-[15rem] lg:w-[15rem] w-[100%] z-30`}>
+    <div className={`lg:!block ${isOpened ? "!block" : "!hidden"} bg-neutral-100 p-10 h-screen overflow-y-scroll !fixed 2xl:w-[17rem] xl:w-[17rem] lg:w-[17rem] w-[100%] z-30`}>
 
         {isLoading ? 
           <div className="pt-20">
@@ -59,8 +63,12 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
 
             <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Password</li>
 
-            <Link to={'/dashboard/student/all-hire-tutors'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FiUsers className="text-lg text-[#00C0EA]"/>FAQs</li>
+            <Link to={'/dashboard/student/faqs'}>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FaQuestion className="text-lg text-[#00C0EA]"/>FAQs</li>
+            </Link>
+
+            <Link to={'/dashboard/welearn/cutomer-care'}>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiCustomerServiceLine className="text-lg text-[#00C0EA]"/>Customer Care</li>
             </Link>
 
 
