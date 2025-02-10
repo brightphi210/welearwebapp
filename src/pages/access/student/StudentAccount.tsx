@@ -205,27 +205,26 @@ const StudentAccount = () => {
         </div>
       </div>
 
-       <div>
+      <div>
+        <Modal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Delete Account"
+          className="lg:!w-[30%] w-full text-sm p-5 !rounded-3xl !relative"
+        > 
+          <div className="flex justify-center">
+            <div className="space-y-4 pt-6">
+              <p className="bg-red-100 p-4 w-fit rounded-full text-center flex m-auto text-red-800 border border-red-300"><FiAlertOctagon className="text-2xl"/></p>
+              <p className="text-center text-sm">Are you sure you want to delete <br /> your account? This action cannot be undone.</p>
 
-            <Modal 
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              title="Delete Account"
-              className="lg:!w-[30%] w-full text-sm p-5 !rounded-3xl"
-            > 
-              <div className="flex justify-center">
-                <div className="space-y-4 pt-6">
-                  <p className="bg-red-100 p-4 w-fit rounded-full text-center flex m-auto text-red-800 border border-red-300"><FiAlertOctagon className="text-2xl"/></p>
-                  <p className="text-center text-sm">Are you sure you want to delete <br /> your account? This action cannot be undone.</p>
-
-                  <div className="flex lg:flex-row flex-col justify-center gap-2 pt-3">
-                    <CustomizedButtonOutline onClick={() => setIsModalOpen(false)} text="Cancel" />
-                    <CustomizedButtonMain onClick={() => {}} text="Delete Account" />
-                  </div>
-                </div>
+              <div className="flex lg:flex-row flex-col justify-center gap-2 pt-3">
+                <CustomizedButtonOutline onClick={() => setIsModalOpen(false)} text="Cancel" />
+                <CustomizedButtonMain onClick={() => {}} text="Delete Account" />
               </div>
-            </Modal>
+            </div>
           </div>
+        </Modal>
+      </div>
     </div>
   )
 }

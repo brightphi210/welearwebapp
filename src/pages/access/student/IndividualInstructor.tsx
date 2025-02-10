@@ -80,7 +80,6 @@ const IndividualInstructor = () => {
 
 
 
-        {/* Content */}
         <div className="lg:pt-28 pt-24 h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-5 overflow-y-scroll">
             <div>
               {isLoading? (
@@ -112,7 +111,7 @@ const IndividualInstructor = () => {
                   </div>
                   </Link>
 
-                  <div className='pt-8 space-y-4 lg:!w-[50%] w-full'>
+                  <div className='pt-8 space-y-4 w-full'>
                     <div className='flex justify-between'>
                       <h2 className='font-semibold text-sm'>Bio Data</h2>
                       <p className='text-lg text-green-600 font-semibold'>{individualInstructorData?.classes[0]?.price && <span> &#8358; {individualInstructorData?.classes[0]?.price} </span>}</p>
@@ -120,18 +119,18 @@ const IndividualInstructor = () => {
                     <p className='text-sm'>{individualInstructorData?.bio_data}</p>
                   </div>
 
-                  <div className='border border-neutral-300 p-5 mt-8 rounded-lg lg:!w-[50%] w-full'>
-                    <div className='space-y-4 text-sm border-b border-neutral-200 pb-8'>
-                      <h2 className='font-semibold text-sm'>Work Data</h2>
-                      <ul className='space-y-5'>
+                  <div className='pt-3 mt-3 border-t border-neutral-300'>
+                    <div className='space-y-3 text-sm '>
+                      <h2 className='font-semibold text-base'>Work Data</h2>
+                      <ul className='space-y-3'>
                         <li className='text-neutral-500'>Trained: <span className='font-medium text-black'>{individualInstructorData?.number_of_trained_students || '0'} Users</span></li>
                         <li className='text-neutral-500'>Experience: <span className='font-medium text-black'>{individualInstructorData?.years_of_experience || '0'} Years</span></li>
                       </ul>
                     </div>
 
-                    <div className='pt-8 space-y-4 text-sm '>
-                      <h2 className='font-semibold text-sm'>Location Data</h2>
-                      <ul className='space-y-5'>
+                    <div className='py-3 mt-3 border-y border-neutral-300'>
+                      <h2 className='font-semibold text-base'>Location Data</h2>
+                      <ul className='space-y-3 text-sm pt-3'>
                         <li className='text-neutral-500'>Location: <span className='font-medium text-black'>{individualInstructorData?.location || 'N/A'}</span></li>
                         <li className='text-neutral-500'>LGA: <span className='font-medium text-black'>{individualInstructorData?.LGA || 'N/A'}</span></li>
                         <li className='text-neutral-500'>State: <span className='font-medium text-black'>{individualInstructorData?.state || 'N/A'}</span></li>
@@ -147,12 +146,13 @@ const IndividualInstructor = () => {
                   </div>
 
                   <div>
-
                       <Modal
                         isOpen={isModalOpen}
                         onClose={() => setIsModalOpen(false)}
                         title={`${!isReadyToPay ? 'Choose Class Days and Time' : 'Payment Details'}`}
-                        className={`2xl:!w-[40%] xl:!w-[50%] lg:!w-[60%] ${!isReadyToPay ? '2xl:h-[75%] xl:h-[90%] lg:h-[90%]' : 'h-fit'} h-fit overflow-y-scroll w-full text-sm lg:p-5 p-3 !rounded-3xl`}
+                        className={`2xl:w-[40%] xl:w-[50%] lg:w-[60%] ${!isReadyToPay ? '2xl:h-[75%] xl:h-[90%] lg:h-[90%]' : 'h-fit'} 
+                          h-fit overflow-y-scroll w-full text-sm lg:p-5 p-3 !rounded-3xl `
+                        }
                       > 
                         <form action='' onSubmit={handleSubmit(onSubmit)} className="w-full">
                           {!isReadyToPay ?

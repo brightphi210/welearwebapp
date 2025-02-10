@@ -12,6 +12,7 @@ import IndividualInstructor from '@/pages/access/student/IndividualInstructor';
 import StudentHome from '@/pages/access/student/StudentHome';
 import StudentAccount from '@/pages/access/student/StudentAccount';
 import InstructorHome from '@/pages/access/instructor/InstructorHome';
+import IndividualHiredTutors from '@/pages/access/student/IndividualHiredTutors';
 
 const AllRoute = () => {
   return (
@@ -32,6 +33,7 @@ const AllRoute = () => {
       <Route path="/dashboard/student" element={<StudentHome />} />
       <Route path="/dashboard/student/all-hire-tutors" element={<AllHiredTutors />} />
       <Route path="/dashboard/student/tutor/:id" element={<IndividualInstructor />} />
+      <Route path="/dashboard/student/hired/tutor/:id" element={<IndividualHiredTutors />} />
       <Route path="/dashboard/student/account" element={<StudentAccount />} />
     </Routes>
   );

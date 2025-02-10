@@ -75,7 +75,7 @@ const LoginUser = () => {
 
   return (
     <div className='flex justify-center items-center lg:min-h-screen lg:p-0 px-5 pt-[10rem]'>
-        <form action="" onSubmit={handleSubmit(onSubmit)} className='lg:w-[28%] w-full'>
+        <form action="" onSubmit={handleSubmit(onSubmit)} className='lg:!w-[28%] w-full'>
             <div className='lg:text-center text-left space-y-3'>
                 <h2 className='text-3xl font-semibold'>Welcome Back to Welearn</h2>
                 <p>Welearn is your go-to platform.</p>
