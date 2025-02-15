@@ -17,7 +17,6 @@ import { formatDate } from "@/Compnents/DateFormater"
 import { useNavigate } from "react-router-dom"
 import Loading from "@/Compnents/UI/Loading"
 import { useForm } from "react-hook-form"
-import useUpdateStudentProfile from "@/hooks/mutations/useUpdateStudentProfile"
 import { toast, ToastContainer } from "react-toastify"
 import { FiAlertOctagon } from "react-icons/fi";
 
@@ -25,11 +24,9 @@ import { FiAlertOctagon } from "react-icons/fi";
 // ========= Beta UI =========
 import { Modal } from '@brightcodeui/beta-ui';
 import useGetSingleInstructor from "@/hooks/queries/useGetSingleInstructor"
+import useUpdateInstructorProfile from "@/hooks/mutations/useUpdateInstructorData"
+import { UpdateInstrutorProps } from "@/APIs/api/instructorsGet"
 
-interface StudentUpdateProps {
-  gender: string
-  location: string
-}
 
 const InstructorAccount = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,30 +42,52 @@ const InstructorAccount = () => {
 
   console.log("My Data", myData)
 
-  const { mutate, isPending } = useUpdateStudentProfile()
+  const { mutate, isPending } = useUpdateInstructorProfile()
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setFile(event.target.files[0])
+    }
+  }
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<StudentUpdateProps>()
+  } = useForm<UpdateInstrutorProps>()
 
-  const onSubmit = (formData: StudentUpdateProps) => {
+  const onSubmit = (formData: UpdateInstrutorProps) => {
+    const updatedFormData = new FormData()
+
+    // Append all form fields to FormData
+    Object.keys(formData).forEach((key) => {
+      updatedFormData.append(key, formData[key as keyof UpdateInstrutorProps] as string)
+    })
+
+    // Append the file if it exists
+    if (file) {
+      updatedFormData.append("profile_pic", file)
+    }
+
     mutate(
-      { id: myData?.id, formData },
+      { id: myData?.id, formData: updatedFormData },
       {
         onSuccess: () => {
-          console.log("Student profile updated successfully")
+          console.log("Instructor profile updated successfully")
           setShowForm(false)
           toast.success("Profile updated successfully")
+          // Reset file state after successful update
+          setFile(null)
         },
         onError: (error) => {
-          console.log("Student profile update failed:", error)
+          console.log("Instructor profile update failed:", error)
           toast.error("An error occurred while updating the profile")
         },
       },
     )
   }
+
 
 
   return (
@@ -119,7 +138,9 @@ const InstructorAccount = () => {
 
                   {!showForm ? (
                     <div className="border border-neutral-200 lg:!w-[50%] w-full p-5 rounded-md mt-5">
-                      <h2 className="text-sm font-semibold">Edit Personal Info</h2>
+
+                        <h2 className="text-sm font-semibold">Edit Personal Info</h2>
+                     
 
                       <div className="flex flex-col gap-3 pt-5 w-full">
                         <div>
@@ -133,8 +154,28 @@ const InstructorAccount = () => {
                         </div>
 
                         <div>
+                          <label className="text-xs">Years of Experience</label>
+                          <p className="bg-neutral-100 border border-neutral-200 text-sm mt-1 p-3 rounded-lg font-semibold">{myData?.years_of_experience} years</p>
+                        </div>
+
+                        <div>
                           <label className="text-xs">Location</label>
                           <p className="bg-neutral-100 border border-neutral-200 text-sm mt-1 p-3 rounded-lg font-semibold">{myData?.location}</p>
+                        </div>
+
+                        <div>
+                          <label className="text-xs">LGA</label>
+                          <p className="bg-neutral-100 border border-neutral-200 text-sm mt-1 p-3 rounded-lg font-semibold">{myData?.LGA}</p>
+                        </div>
+
+                        <div>
+                          <label className="text-xs">State</label>
+                          <p className="bg-neutral-100 border border-neutral-200 text-sm mt-1 p-3 rounded-lg font-semibold">{myData?.state}</p>
+                        </div>
+
+                        <div>
+                          <label className="text-xs">Bio</label>
+                          <p className="bg-neutral-100 border border-neutral-200 text-sm mt-1 p-3 rounded-lg font-semibold">{myData?.bio_data}</p>
                         </div>
 
                         <div>
@@ -151,9 +192,32 @@ const InstructorAccount = () => {
                     </div>
                   ) : (
                     <div className="border border-neutral-200 lg:!w-[50%] w-full p-5 rounded-md mt-5">
-                      <h2 className="text-sm font-semibold">Edit Personal Info</h2>
 
-                      <form className="flex flex-col gap-3 pt-5 w-full" onSubmit={handleSubmit(onSubmit)}>
+                      <form className="flex flex-col gap-3 pt-5 w-full" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-sm font-semibold">Edit Personal Info</h2>
+
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img
+                              className="object-cover w-full h-full"
+                              src={file ? URL.createObjectURL(file) : myData?.profile_pic}
+                              alt="Profile"
+                            />
+                          </div>
+                          <div>
+                            <label className="cursor-pointer bg-sky-100 border border-sky-500 text-sky-700 px-4 py-2 rounded-full">
+                              Upload Image
+                              <input
+                                type="file"
+                                onChange={handleFileChange}
+                                className="hidden"
+                                accept="image/*"
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                         <div>
                           <label className="text-xs">Full Name</label>
                           <p className="bg-neutral-100 text-sm border border-neutral-300 mt-1 p-3 rounded-lg">{myData?.user?.name}</p>
@@ -170,10 +234,10 @@ const InstructorAccount = () => {
                             {...register("gender", { required: "Gender is required" })}
                             type="text"
                             placeholder="Enter Gender"
-                            className="text-sm py-2 input input-bordered border border-neutral-300 w-full"
+                            className="text-base py-2 input input-bordered border border-neutral-300 w-full"
                             defaultValue={myData?.gender}
                           />
-                          {errors.gender && <p className="text-red-500 text-xs">{errors.gender.message}</p>}
+                          {errors.gender && <p className="text-red-500 text-xs pt-1">{errors.gender.message}</p>}
                         </div>
 
                         <div>
@@ -182,12 +246,61 @@ const InstructorAccount = () => {
                             {...register("location", { required: "Location is required" })}
                             type="text"
                             placeholder="Enter Location"
-                            className="text-sm py-2 input input-bordered border border-neutral-300 w-full"
+                            className="text-base py-2 input input-bordered border border-neutral-300 w-full"
                             defaultValue={myData?.location}
                           />
-                          {errors.location && <p className="text-red-500 text-xs">{errors.location.message}</p>}
+                          {errors.location && <p className="text-red-500 text-xs pt-1">{errors.location.message}</p>}
                         </div>
 
+                        <div>
+                          <label className="text-xs">Years of Experience</label>
+                          <input
+                            {...register("years_of_experience", { required: "Experience is required" })}
+                            type="number"
+                            placeholder="Experience e.g 10"
+                            className="text-base py-2 input input-bordered border border-neutral-300 w-full"
+                            defaultValue={myData?.years_of_experience}
+                          />
+                          {errors.years_of_experience && <p className="text-red-500 text-xs pt-1">{errors?.years_of_experience?.message}</p>}
+                        </div>
+
+                        <div>
+                          <label className="text-xs">LGA</label>
+                          <input
+                            {...register("LGA", { required: "LGA is required" })}
+                            type="text"
+                            placeholder="Enter LGA"
+                            className="text-base py-2 input input-bordered border border-neutral-300 w-full"
+                            defaultValue={myData?.LGA}
+                          />
+                          {errors.LGA && <p className="text-red-500 text-xs pt-1">{errors?.LGA?.message}</p>}
+                        </div>
+
+                        <div>
+                          <label className="text-xs">State</label>
+                          <input
+                            {...register("state", { required: "state is required" })}
+                            type="text"
+                            placeholder="Enter State e.g Lagos"
+                            className="text-base py-2 input input-bordered border border-neutral-300 w-full"
+                            defaultValue={myData?.state}
+                          />
+                          {errors.state && <p className="text-red-500 text-xs pt-1">{errors?.state?.message}</p>}
+                        </div>
+
+
+                        <div>
+                          <label className="text-xs">Bio Data</label>
+                          <textarea
+                            {...register("bio_data", { required: "Bio Data is required" })}
+                            placeholder="Enter Bio e.g I am a talented keyboardist and Pianist"
+                            className="text-base py-2 textarea max-h-[10rem] min-h-[10rem] input-bordered border border-neutral-300 w-full"
+                            defaultValue={myData?.bio_data}
+                          />
+                          {errors.bio_data && <p className="text-red-500 text-xs pt-1">{errors?.bio_data?.message}</p>}
+                        </div>
+
+                    
                         <div className="pt-5 lg:w-[50%] flex gap-2 w-full">
                           <CustomizedDisableButtonOutline text="Back" onClick={() => setShowForm(false)} />
                           {isPending ? (

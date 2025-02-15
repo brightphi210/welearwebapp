@@ -30,7 +30,29 @@ interface InstructorProps {
 }
 
 
+export interface UpdateInstrutorProps {
+  name: string;
+  location: string;
+  years_of_experience	: string;
+  gender: string;
+  bio_data: string;
+  LGA: string;
+  state: string;
+  profile_pic: string;
+}
+
 export const instructorGetApi = (params?: InstructorProps) => base_url.get(INSTRUCTORSGET_ENDPOINT, { params })
 export const singleInstructorGetApi = (userId: number) => base_url.get(SINGLE_INSTRUCTOR(userId))
 export const singleStudentGetApi = (userId: number) => base_url.get(STUDENTPROFILE(userId))
+
+
+export const singleInstructorUpdateApi = (userId: number, formData: FormData) =>
+  base_url.patch(SINGLE_INSTRUCTOR(userId), formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+
+
+// export const singleInstructorUpdateApi = (userId: number, formData: UpdateInstrutorProps) => base_url.patch(SINGLE_INSTRUCTOR(userId), formData)
 
