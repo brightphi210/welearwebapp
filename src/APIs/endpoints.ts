@@ -20,5 +20,9 @@ export const HIRING_INSTRUCTOR_ENDPOINT = "/api/class-bookings/"
 export const STUDENT_REMARK = "/api/student-remarks/"
 export const STUDENT_REMARK_POST = "/api/student-remarks/"
 
+export const INSTRUCTOR_REMARK_GET = "/api/instructor-remarks/"
+export const INSTRUCTOR_REMARK_POST = "/api/instructor-remarks/"
+
+
 //PASSWORD UPDATE
 export const STUDENT_PASSWORD_UPDATE = "/api/change-password/"

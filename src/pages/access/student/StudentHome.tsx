@@ -64,7 +64,7 @@ const StudentHome = () => {
             instructors.length > 0 && (
               <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
                 {instructors.map((instructor: Instructor, index: number) => (
-                  <div key={instructor.id || index} className="border-2 border-neutral-200 rounded-xl p-5 hover:bg-neutral-100">
+                  <div key={instructor.id || index} className="shadow-sm rounded-xl border border-neutral-200 p-5 hover:bg-neutral-100">
                     <div className="flex items-center gap-4 pb-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden">
                         <img

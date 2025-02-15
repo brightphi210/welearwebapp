@@ -4,7 +4,6 @@ import InstructorSideBar from './InstructorSideBar'
 import { useState } from 'react'
 import useGetSingleInstructor from '@/hooks/queries/useGetSingleInstructor'
 import { MdHotelClass } from "react-icons/md";
-import { PiWarningOctagon } from "react-icons/pi";
 import NoData from '@/Compnents/UI/NoData'
 import Loading from '@/Compnents/UI/Loading'
 import { RiTimerLine } from "react-icons/ri";
@@ -29,7 +28,7 @@ interface Instructor {
 
 }
 
-const InstructorHome = () => {
+const AllStudent = () => {
   const [isOpened, setIsOpened] = useState(false)
   const toggleDrawer = () => setIsOpened(!isOpened)
 
@@ -47,34 +46,12 @@ const InstructorHome = () => {
         <InstructorSideBar isOpened={isOpened}/>
 
         <div className='pt-24 h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-5'>
-          <h2 className="text-xl font-semibold">Welcome Back, {myData?.user?.name}</h2>
+          <h2 className="text-xl font-semibold">All my students</h2>
 
           <div className='pt-5 '>
-            <div className='p-5 bg-[#00C0EA] text-white rounded-xl'>
-              <p className='text-sm'>Your Course Details</p>
-              <h2 className='text-lg font-bold flex items-center gap-1'><MdHotelClass />{myData?.classes[0]?.class_name.toUpperCase()}</h2>
-              <div className='flex items-center pt-1 justify-between'>
-                <p className='text-sm'>Price: N<span className='text-base font-bold'>{myData?.classes[0]?.price}</span></p>
-                <p className='text-sm'>All Bookings: <span className='text-lg font-bold'>{myData?.allBookings?.length}</span></p>
-              </div>
-            </div>
-
-            {myData?.is_verified === false &&
-              <div className='flex text-xs justify-between items-center p-3 rounded-xl mt-4 bg-[#F6B712]'>
-                  <div>
-                    <h2 className='text-base font-bold'>Acount Verification Pending</h2>
-                    <p>
-                      Proceed to our office at No 1 Ikwerre Road, <br /> 
-                      by Agip Junction by Ada George for final verification
-                    </p>
-                  </div>
-                  <p className='text-3xl'><PiWarningOctagon /></p>
-              </div>
-            }
-
             <div>
               {isLoading ? (
-                <div className="pt-[10rem] flex justify-center items-center">
+                <div className="pt-[5rem] flex justify-center items-center">
                     <Loading />
                 </div>
               ) : (
@@ -125,4 +102,4 @@ const InstructorHome = () => {
   )
 }
 
-export default InstructorHome
+export default AllStudent
