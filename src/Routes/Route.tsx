@@ -19,6 +19,8 @@ import StudentPasswordUpdate from '@/pages/access/student/StudentPasswordUpdate'
 import IndividualParent from '@/pages/access/instructor/IndividualParent';
 import AllStudent from '@/pages/access/instructor/AllStudent';
 import InstructorAccount from '@/pages/access/instructor/InstructorAccount';
+import CustomerCare2 from '@/pages/noaccess/CustomerCare2';
+import InstructorFAQs from '@/pages/access/instructor/InstructorFAQs';
 
 const AllRoute = () => {
   return (
@@ -32,12 +34,14 @@ const AllRoute = () => {
       <Route path="/register/parent" element={<RegisterParent />} />
       <Route path="/register/tutor" element={<RegisterTutor />} />
       <Route path="/dashboard/welearn/cutomer-care" element={<CustomerCare />} />
+      <Route path="/dashboard/welearn/cutomer-care-instructor" element={<CustomerCare2 />} />
       <Route path="*" element={<NotFound />} /> 
       
       <Route path="/dashboard/instructor" element={<InstructorHome />} />
       <Route path="/dashboard/instructor/all-students" element={<AllStudent />} />
       <Route path="/dashboard/instructor/tutor/:id" element={<IndividualParent />} />
       <Route path="/dashboard/instructor/account" element={<InstructorAccount />} />
+      <Route path="/dashboard/instructor/faqs" element={<InstructorFAQs />} />
 
 
 

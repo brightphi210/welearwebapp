@@ -65,11 +65,11 @@ const InstructorSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
               <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Password</li>
             </Link>
 
-            <Link to={'/'}>
+            <Link to={'/dashboard/instructor/faqs'}>
               <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FaQuestion className="text-lg text-[#00C0EA]"/>FAQs</li>
             </Link>
 
-            <Link to={'/'}>
+            <Link to={'/dashboard/welearn/cutomer-care-instructor'}>
               <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiCustomerServiceLine className="text-lg text-[#00C0EA]"/>Customer Care</li>
             </Link>
 
