@@ -111,6 +111,7 @@ const navigate = useNavigate()
     }
 
 
+    console.log('This is the data', classData)
 
   return (
     <div>
@@ -130,7 +131,7 @@ const navigate = useNavigate()
                     <p className='text-lg'><FaChevronLeft /></p>
                     <div className='flex items-center gap-2'>
                       <div className='flex justify-center overflow-hidden w-10 h-10 rounded-full'>
-                          <img className='object-cover w-full h-full' src={individualStudentData?.user?.profile_pic || individualStudentData?.profile_pic} alt="" />
+                          <img className='object-cover w-full h-full' src={individualStudentData?.profile_pic} alt="" />
                       </div>
 
                       <div className='flex gap-2'>
@@ -178,10 +179,13 @@ const navigate = useNavigate()
                   </div>
 
                   <div className='pt-5'>
-                    <CustomizedButtonMain text='Check/Review' onClick={()=>setIsModalOpen(true)}/> 
+                    {classData?.isPayed !== null ? 
+                    <CustomizedButtonMain text='Check/Review' onClick={()=>setIsModalOpen(true)}/> :
+                      <p className='bg-blue-100 text-blue-300 p-3 text-base font-semibold text-center rounded-full px-6 cursor-not-allowed'>Payment not Approved</p>
+                    }
                   </div>
 
-                    {/* {individualStudentData?.allBookings[0]?.isPayed !== null &&<> */}
+                    {classData?.isPayed !== null &&<>
                     <div className='pt-10 pb-10'>
                         <h2 className='text-base font-semibold flex items-center gap-2'><CgNotes className='text-lg text-sky-500'/>Remarks</h2>
 
@@ -215,7 +219,7 @@ const navigate = useNavigate()
                             </div>
                         }
                     </div>
-                    {/* </>} */}
+                    </>}
 
                   <div>
                       <Modal
