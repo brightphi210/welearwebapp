@@ -192,9 +192,9 @@ const InstructorAccount = () => {
 
                       <form className="flex flex-col gap-3 pt-5 w-full" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
                       <div className="flex items-center justify-between">
-                        <h2 className="text-sm font-semibold">Edit Personal Info</h2>
+                        <h2 className="text-sm font-semibold">Edit Info</h2>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                           <img
                               className="object-cover w-full h-full"
@@ -203,7 +203,7 @@ const InstructorAccount = () => {
                             />
                           </div>
                           <div>
-                            <label className="cursor-pointer bg-sky-100 border border-sky-500 text-sky-700 px-4 py-2 rounded-full">
+                            <label className="cursor-pointer text-xs bg-sky-100 border border-sky-500 text-sky-700 px-4 py-2 rounded-full">
                               Upload Image
                               <input
                                 type="file"

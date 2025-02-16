@@ -70,6 +70,7 @@ const IndividualInstructor = () => {
     })
   }
 
+
   return (
     <div>
       <div className='w-full'>
@@ -92,7 +93,7 @@ const IndividualInstructor = () => {
                     <p className='text-lg'><FaChevronLeft /></p>
                     <div className='flex items-center gap-2'>
                       <div className='flex justify-center overflow-hidden w-10 h-10 rounded-full'>
-                          <img src={individualInstructorData?.profile_pic} alt="" />
+                          <img className='w-full h-full object-cover' src={individualInstructorData?.profile_pic} alt="" />
                       </div>
 
                       <div className='flex gap-2'>
@@ -114,7 +115,13 @@ const IndividualInstructor = () => {
                   <div className='pt-8 space-y-4 w-full'>
                     <div className='flex justify-between'>
                       <h2 className='font-semibold text-sm'>Bio Data</h2>
-                      <p className='text-lg text-green-600 font-semibold'>{individualInstructorData?.classes[0]?.price && <span> &#8358; {individualInstructorData?.classes[0]?.price} </span>}</p>
+                      {individualInstructorData?.classes[0]?.price && (
+                      <p className='font-semibold text-sm flex gap-2 items-center'>Course Price: 
+                        <span className='text-green-600 text-lg'>
+                            {new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(individualInstructorData?.classes[0]?.price)}
+                        </span>
+                      </p>
+                      )}
                     </div>
                     <p className='text-sm'>{individualInstructorData?.bio_data}</p>
                   </div>

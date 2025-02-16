@@ -47,9 +47,9 @@ const InstructorHome = () => {
         <InstructorSideBar isOpened={isOpened}/>
 
         <div className='pt-24 h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-5'>
-          <h2 className="text-xl font-semibold">Welcome Back, {myData?.user?.name}</h2>
+          <h2 className="text-base font-semibold">Welcome Back, {myData?.user?.name}</h2>
 
-          <div className='pt-5 '>
+          <div className='pt-3'>
             <div className='p-5 bg-[#00C0EA] text-white rounded-xl'>
               <p className='text-sm'>Your Course Details</p>
               <h2 className='text-lg font-bold flex items-center gap-1'><MdHotelClass />{myData?.classes[0]?.class_name.toUpperCase()}</h2>
@@ -79,7 +79,7 @@ const InstructorHome = () => {
                 </div>
               ) : (
                 myData?.allBookings && myData?.allBookings?.length > 0 ? (
-                  <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
+                  <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5 pb-10">
                     {myData?.allBookings.map((booking: Instructor, index: number) => (
                       <div key={booking?.student?.id || index} className="shadow-sm rounded-xl border border-neutral-200 p-5 hover:bg-neutral-100">
                         <div className="flex items-center gap-4 pb-3">

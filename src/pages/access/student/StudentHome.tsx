@@ -45,7 +45,7 @@ const StudentHome = () => {
 
         {/* Main Content */}
         <div className="pt-24 h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-5 overflow-y-scroll">
-          <h2 className="text-xl font-semibold">Welcome Back, {myData?.data?.user?.name}</h2>
+          <h2 className="text-sm font-semibold">Welcome Back, {myData?.data?.user?.name}</h2>
 
           {/* Search Bar & Filter */}
           <div className="flex items-center pt-3 justify-between w-full">
@@ -62,7 +62,7 @@ const StudentHome = () => {
             </div>
           ) : (
             instructors.length > 0 && (
-              <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5">
+              <div className="grid 2xl:grid-cols-4  xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 pt-5 pb-10">
                 {instructors.map((instructor: Instructor, index: number) => (
                   <div key={instructor.id || index} className="rounded-xl border shadow-md border-neutral-200 p-5 hover:bg-neutral-100">
                     <div className="flex items-center gap-4 pb-3">

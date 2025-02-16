@@ -22,7 +22,7 @@ const Login: React.FC = () => {
         <div className="text-center lg:py-0 py-16 pb-16 space-y-2 lg:!relative fixed lg:bg-gray-100 lg:!text-black text-white bg-[#00C0EA] rounded-tr-[40px] rounded-tl-[40px] w-full bottom-0 ">
           
           <div className="space-y-2" data-aos="fade-up" data-aos-duration="500">
-            <h2 className="text-3xl font-semibold">Login</h2>
+            <h2 className="text-2xl font-semibold">Login</h2>
             <p>Welearn is your go-to platform.</p>
           </div>
 

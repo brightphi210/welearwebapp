@@ -26,7 +26,7 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
   const studentProfileData = data?.data
 
   return (
-    <div className={`lg:!block ${isOpened ? "!block" : "!hidden"} bg-neutral-100 p-10 h-screen overflow-y-scroll !fixed 2xl:w-[17rem] xl:w-[17rem] lg:w-[17rem] w-[100%] z-30`}>
+    <div className={`lg:!block ${isOpened ? "!block" : "!hidden"} bg-neutral-900 text-white p-10 h-screen overflow-y-scroll !fixed 2xl:w-[17rem] xl:w-[17rem] lg:w-[17rem] w-[100%] z-30`}>
 
         {isLoading ? 
           <div className="pt-20">
@@ -50,27 +50,27 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
 
         <ul className='flex flex-col gap-6 text-sm font-medium pt-6'>
             <Link to={'/dashboard/student'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FiHome className="text-lg text-[#00C0EA]"/>Home</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><FiHome className="text-lg text-[#00C0EA]"/>Home</li>
             </Link>
 
             <Link to={'/dashboard/student/account'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FaRegUser className="text-lg text-[#00C0EA]"/>Account</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><FaRegUser className="text-lg text-[#00C0EA]"/>Account</li>
             </Link>
 
             <Link to={'/dashboard/student/all-hire-tutors'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FiUsers className="text-lg text-[#00C0EA]"/>All Hired Tutors</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><FiUsers className="text-lg text-[#00C0EA]"/>All Hired Tutors</li>
             </Link>
 
             <Link to={'/dashboard/student/password-update'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Password</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Password</li>
             </Link>
 
             <Link to={'/dashboard/student/faqs'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FaQuestion className="text-lg text-[#00C0EA]"/>FAQs</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><FaQuestion className="text-lg text-[#00C0EA]"/>FAQs</li>
             </Link>
 
             <Link to={'/dashboard/welearn/cutomer-care'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiCustomerServiceLine className="text-lg text-[#00C0EA]"/>Customer Care</li>
+              <li className="flex items-center gap-3 font-semibold cursor-pointer  p-2.5 rounded-lg w-full hover:bg-neutral-800"><RiCustomerServiceLine className="text-lg text-[#00C0EA]"/>Customer Care</li>
             </Link>
 
 

@@ -24,11 +24,13 @@ import { FiAlertOctagon } from "react-icons/fi";
 
 // ========= Beta UI =========
 import { Modal } from '@brightcodeui/beta-ui';
+import { UpdateProps } from "@/APIs/api/singleStudentProfile"
 
-interface StudentUpdateProps {
-  gender: string
-  location: string
-}
+// interface StudentUpdateProps {
+//   gender: string
+//   location: string
+//   profile_pic: string;
+// }
 
 const StudentAccount = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,16 +47,33 @@ const StudentAccount = () => {
   console.log("My Data", myData)
 
   const { mutate, isPending } = useUpdateStudentProfile()
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setFile(event.target.files[0])
+    }
+  }
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<StudentUpdateProps>()
+  } = useForm<UpdateProps>()
 
-  const onSubmit = (formData: StudentUpdateProps) => {
+  const onSubmit = (formData: UpdateProps) => {
+
+        const updatedFormData = new FormData()
+    
+        Object.keys(formData).forEach((key) => {
+          updatedFormData.append(key, formData[key as keyof UpdateProps] as string)
+        })
+    
+        if (file) {
+          updatedFormData.append("profile_pic", file)
+        }
     mutate(
-      { id: myData?.id, formData },
+      { id: myData?.id, formData: updatedFormData },
       {
         onSuccess: () => {
           console.log("Student profile updated successfully")
@@ -150,7 +169,30 @@ const StudentAccount = () => {
                     </div>
                   ) : (
                     <div className="border border-neutral-200 lg:!w-[50%] w-full p-5 rounded-md mt-5">
-                      <h2 className="text-sm font-semibold">Edit Personal Info</h2>
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-sm font-semibold">Edit Info</h2>
+
+                        <div className="flex items-center gap-2">
+                          <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img
+                              className="object-cover w-full h-full"
+                              src={file ? URL.createObjectURL(file) : myData?.profile_pic}
+                              alt="Profile"
+                            />
+                          </div>
+                          <div>
+                            <label className="cursor-pointer bg-sky-100 border text-xs border-sky-500 text-sky-700 px-4 py-2 rounded-full">
+                              Upload Image
+                              <input
+                                type="file"
+                                onChange={handleFileChange}
+                                className="hidden"
+                                accept="image/*"
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
 
                       <form className="flex flex-col gap-3 pt-5 w-full" onSubmit={handleSubmit(onSubmit)}>
                         <div>
