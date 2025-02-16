@@ -1,4 +1,3 @@
-import {RiVerifiedBadgeFill } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Loading from '@/Compnents/UI/Loading';
@@ -141,12 +140,9 @@ const navigate = useNavigate()
                             <p className="text-xs text-neutral-500 pt-1">{individualStudentData?.user?.email}</p>
                           </div>
                         </div>
-
-                        {individualStudentData?.is_verified && 
-                          <p className="text-lg text-[#00C0EA]"><RiVerifiedBadgeFill /></p>
-                        }
                       </div>
                     </div>
+                    <p className='ml-auto'>{classData?.isPayed === null ? <p className='text-yellow-400 text-sm'>Pending</p> : <p className='text-green-500 text-sm'>Active</p>}</p>
                   </div>
 
          
@@ -166,14 +162,12 @@ const navigate = useNavigate()
                   </div>
 
                   <div className='py-3 mt-3 border-b border-neutral-300'>
-
                     <div className=''>
                       <h2 className='font-semibold text-base'>Days - Times</h2>
                       <ul className='space-y-3 text-sm pt-3'>
                         <li className='text-neutral-600 '>{classData?.dayone} <span className='text-base text-black font-semibold'>{classData?.timeone}</span></li>
                         <li className='text-neutral-600 '>{classData?.daytwo} <span className='text-base text-black font-semibold'>{classData?.timetwo}</span></li>
                         <li className='text-neutral-600 '>{classData?.daythree} <span className='text-base text-black font-semibold'>{classData?.timethree}</span></li>
-
                       </ul>
                     </div>
                   </div>
@@ -181,7 +175,7 @@ const navigate = useNavigate()
                   <div className='pt-5'>
                     {classData?.isPayed !== null ? 
                     <CustomizedButtonMain text='Check/Review' onClick={()=>setIsModalOpen(true)}/> :
-                      <p className='bg-blue-100 text-blue-300 p-3 text-base font-semibold text-center rounded-full px-6 cursor-not-allowed'>Payment not Approved</p>
+                      <p className='bg-blue-100 text-blue-300 p-3 text-base font-semibold text-center rounded-full px-6 cursor-not-allowed'>Class not Approved</p>
                     }
                   </div>
 
