@@ -27,8 +27,10 @@ const Login: React.FC = () => {
           </div>
 
           <div className="lg:!flex flex-col gap-3 pt-5 hidden !w-[30%] justify-center m-auto" data-aos="fade-up" data-aos-duration="500">
-            <CustomizedButtonMain text="Parent"/>
-            <CustomizedButtonMain text="Tutor"/>
+            {/* <CustomizedButtonMain text="Tutor"/> */}
+            <Link to={'/select/user/role'}>
+              <CustomizedButtonMain text="Get Started"/>
+            </Link>
             <Link to={'/login/user'}>
               <CustomizedButtonMain text="Login"/>
             </Link>
@@ -36,8 +38,10 @@ const Login: React.FC = () => {
 
           <div className="lg:!hidden flex flex-col gap-3 pt-5 w-[90%] justify-center m-auto " data-aos="fade-up" data-aos-duration="500">
 
-            <CustomizedButtonWhite text="Parent"/>
-            <CustomizedButtonWhite text="Tutor"/>
+            {/* <CustomizedButtonWhite text="Tutor"/> */}
+            <Link to={'/select/user/role'}>
+              <CustomizedButtonWhite text="Get Started"/>
+            </Link>
             <Link to={'/login/user'}>
               <CustomizedButtonWhite text="Login"/>
             </Link>

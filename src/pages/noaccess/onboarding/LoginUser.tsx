@@ -72,6 +72,7 @@ const LoginUser = () => {
           },
         })
       }
+      const [isChecked, setIsChecked] = useState(false)
 
   return (
     <div className='flex justify-center items-center lg:min-h-screen lg:p-0 px-5 pt-[10rem]'>
@@ -115,7 +116,7 @@ const LoginUser = () => {
                 </div>
 
                 <div className='flex lg:items-center gap-2 lg:m-auto'>
-                    <input type="checkbox" checked={false} className="checkbox w-5 h-5 rounded-md checkbox-info border-2 " />
+                    <input type="checkbox" onChange={()=>setIsChecked(!isChecked)} checked={isChecked} className="checkbox w-5 h-5 rounded-md checkbox-info border-2 " />
                     <p className='text-xs'>By signing up, you agree to our 
                         <span className='text-[#00C0EA] font-semibold cursor-pointer pl-1'>
                             Terms of Service and Privacy Policy.
@@ -125,7 +126,7 @@ const LoginUser = () => {
 
                 <div className='text-xs text-center'>
                     <p>Don’t have an account?
-                        <Link to={'/register'}>
+                        <Link to={'/select/user/role'}>
                             <span className='text-[#00C0EA] font-semibold cursor-pointer pl-1'>Signup</span>
                         </Link>
                     </p>

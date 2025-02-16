@@ -22,6 +22,7 @@ import InstructorAccount from '@/pages/access/instructor/InstructorAccount';
 import CustomerCare2 from '@/pages/noaccess/CustomerCare2';
 import InstructorFAQs from '@/pages/access/instructor/InstructorFAQs';
 import InstructorPasswordUpdate from '@/pages/access/instructor/InstructorPasswordUpdate';
+import SelectUser from '@/pages/noaccess/onboarding/SelectUser';
 
 const AllRoute = () => {
   return (
@@ -32,6 +33,7 @@ const AllRoute = () => {
       <Route path="/welcome-three" element={<WelcomeScreenThree />} />
       <Route path="/login" element={<Login />} />
       <Route path="/login/user" element={<LoginUser />} />
+      <Route path="/select/user/role" element={<SelectUser />} />
       <Route path="/register/parent" element={<RegisterParent />} />
       <Route path="/register/tutor" element={<RegisterTutor />} />
       <Route path="/dashboard/welearn/cutomer-care" element={<CustomerCare />} />

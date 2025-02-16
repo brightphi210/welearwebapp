@@ -2,6 +2,8 @@
 // LOGIN
 export const LOGIN_ENDPOINT = "/api/token/";
 
+export const SIGNUP_ENDPOINT = "/api/user/";
+
 
 //INSTRUCTORS
 export const INSTRUCTORSGET_ENDPOINT = "/api/instructor-profiles/"
