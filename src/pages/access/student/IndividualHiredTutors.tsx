@@ -131,7 +131,7 @@ const navigate = useNavigate()
                     <p className='text-lg'><FaChevronLeft /></p>
                     <div className='flex items-center gap-2'>
                       <div className='flex justify-center overflow-hidden w-10 h-10 rounded-full'>
-                          <img src={individualInstructorData?.profile_pic} alt="" />
+                          <img className='object-cover w-full' src={individualInstructorData?.profile_pic} alt="" />
                       </div>
 
                       <div className='flex gap-2'>

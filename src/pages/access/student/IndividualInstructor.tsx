@@ -17,6 +17,7 @@ import { IoIosPerson } from 'react-icons/io';
 import { PiPiggyBank } from "react-icons/pi";
 import success from '../../../assets/success.png'
 import { toast, ToastContainer } from 'react-toastify';
+import useGetSingleStudent from '@/hooks/queries/useGetSingleStudent';
 
 
 interface ErrorResponse {
@@ -26,6 +27,44 @@ interface ErrorResponse {
     }
   }
 }
+
+
+interface Instructor {
+  id: number;
+  occupation: string | null;
+  years_of_experience: string;
+  location: string;
+  profile_pic: string;
+  is_verified: boolean;
+  is_hired: boolean;
+  number_of_trained_students: number | null;
+  gender: string;
+  dob: string | null;
+  bio_data: string;
+  LGA: string;
+  state: string;
+}
+
+interface HiredInstructor {
+  id: number;
+  isPayed: {
+      id: number;
+      isPaymentSuccessful: boolean;
+      created_at: string;
+      booking: number;
+  } | null;
+  location: string;
+  dayone: string;
+  daytwo: string;
+  daythree: string;
+  timeone: string;
+  timetwo: string;
+  timethree: string;
+  instructor: Instructor;
+}
+
+
+
 
 
 const IndividualInstructor = () => {
@@ -44,7 +83,17 @@ const IndividualInstructor = () => {
 
   const {mutate, isPending} = useHiringInstructor()
 
+  //   ============= STUDENT DATA =========
+    const { data: studentData, } = useGetSingleStudent(decodedToken?.profile_id ?? 0)
+    const myData = studentData?.data
+
+
+    const filteredInstructors = myData.hiredInstructors.filter((instructor: HiredInstructor) => instructor.instructor.id == individualInstructorData?.id);
+
+
   console.log('THis is class ID', individualInstructorData)
+  console.log('THis is the all data', myData)
+  console.log('THis is the data am looking', filteredInstructors)
 
   const {
     register,
@@ -147,8 +196,18 @@ const IndividualInstructor = () => {
 
                   <div className='pt-10 lg:!w-[20%] w-full'>
                     {individualInstructorData?.classes.length > 0 ?
-                      <CustomizedButtonMain text='Hire Me' onClick={()=>setIsModalOpen(true)}/> :
-                      <p className='bg-blue-100 text-blue-300 p-3 text-sm text-center rounded-full px-6 cursor-not-allowed'>No assigned class yet</p>
+                    <>
+                    {filteredInstructors?.length === 0 ? <>
+                      <CustomizedButtonMain text='Hire Me' onClick={()=>setIsModalOpen(true)}/>
+                        
+                    </> :
+                      <p className='bg-blue-100 text-blue-300 p-3 text-sm text-center rounded-full px-6 cursor-not-allowed'>You Already Hired Me 🎊</p>
+                      }
+                    </>
+                       :
+                      <>
+                        <p className='bg-blue-100 text-blue-300 p-3 text-sm text-center rounded-full px-6 cursor-not-allowed'>No assigned class yet</p>
+                      </>
                     }
                   </div>
 

@@ -52,18 +52,18 @@ const InstructorHome = () => {
           <div className='pt-3'>
             <div className='p-5 bg-[#00C0EA] text-white rounded-xl'>
               <p className='text-sm'>Your Course Details</p>
-              <h2 className='text-lg font-bold flex items-center gap-1'><MdHotelClass />{myData?.classes[0]?.class_name.toUpperCase()}</h2>
+              <h2 className='text-lg font-bold flex items-center gap-1'><MdHotelClass />{myData?.classes[0]?.class_name.toUpperCase() || 'N/A'}</h2>
               <div className='flex items-center pt-1 justify-between'>
-                <p className='text-sm'>Price: N<span className='text-base font-bold'>{myData?.classes[0]?.price}</span></p>
+                <p className='text-sm'>Price: N <span className='text-base font-bold'>{myData?.classes[0]?.price || 'N/A'}</span></p>
                 <p className='text-sm'>All Bookings: <span className='text-lg font-bold'>{myData?.allBookings?.length}</span></p>
               </div>
             </div>
 
             {myData?.is_verified === false &&
-              <div className='flex text-xs justify-between items-center p-3 rounded-xl mt-4 bg-[#F6B712]'>
+              <div className='flex text-xs justify-between items-center p-3 rounded-xl mt-4 bg-[#F6B712] text-white'>
                   <div>
                     <h2 className='text-base font-bold'>Acount Verification Pending</h2>
-                    <p>
+                    <p className='font-semibold pt-1'>
                       Proceed to our office at No 1 Ikwerre Road, <br /> 
                       by Agip Junction by Ada George for final verification
                     </p>

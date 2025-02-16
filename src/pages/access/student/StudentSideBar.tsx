@@ -32,7 +32,7 @@ const StudentSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
           <div className="pt-20">
             <Loading /> 
           </div> :
-          <div className="mt-20 border-b border-neutral-50 pb-3">
+          <div className="mt-20 border-b border-neutral-700 pb-3">
             <div className="relative w-fit">
               <div className="w-20 h-20 flex  justify-center rounded-full border-2 border-[#00C0EA] bg-white overflow-hidden">
                 <img src={studentProfileData?.profile_pic } className="w-full h-full object-cover" alt="" />
