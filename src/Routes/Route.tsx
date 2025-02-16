@@ -21,6 +21,7 @@ import AllStudent from '@/pages/access/instructor/AllStudent';
 import InstructorAccount from '@/pages/access/instructor/InstructorAccount';
 import CustomerCare2 from '@/pages/noaccess/CustomerCare2';
 import InstructorFAQs from '@/pages/access/instructor/InstructorFAQs';
+import InstructorPasswordUpdate from '@/pages/access/instructor/InstructorPasswordUpdate';
 
 const AllRoute = () => {
   return (
@@ -42,6 +43,8 @@ const AllRoute = () => {
       <Route path="/dashboard/instructor/tutor/:id" element={<IndividualParent />} />
       <Route path="/dashboard/instructor/account" element={<InstructorAccount />} />
       <Route path="/dashboard/instructor/faqs" element={<InstructorFAQs />} />
+      <Route path="/dashboard/instructor/password-update" element={<InstructorPasswordUpdate />} />
+
 
 
 

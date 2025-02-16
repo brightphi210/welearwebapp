@@ -27,3 +27,4 @@ export const INSTRUCTOR_REMARK_POST = "/api/instructor-remarks/"
 
 //PASSWORD UPDATE
 export const STUDENT_PASSWORD_UPDATE = "/api/change-password/"
+export const INSTRUCTOR_PASSWORD_UPDATE = "/api/change-password/"

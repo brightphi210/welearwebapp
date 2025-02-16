@@ -60,12 +60,10 @@ const InstructorAccount = () => {
   const onSubmit = (formData: UpdateInstrutorProps) => {
     const updatedFormData = new FormData()
 
-    // Append all form fields to FormData
     Object.keys(formData).forEach((key) => {
       updatedFormData.append(key, formData[key as keyof UpdateInstrutorProps] as string)
     })
 
-    // Append the file if it exists
     if (file) {
       updatedFormData.append("profile_pic", file)
     }
@@ -77,7 +75,6 @@ const InstructorAccount = () => {
           console.log("Instructor profile updated successfully")
           setShowForm(false)
           toast.success("Profile updated successfully")
-          // Reset file state after successful update
           setFile(null)
         },
         onError: (error) => {

@@ -7,7 +7,6 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { FiHome } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
-import { FaQuestion } from "react-icons/fa6";
 import { RiCustomerServiceLine } from "react-icons/ri";
 import useGetSingleInstructor from "@/hooks/queries/useGetSingleInstructor";
 
@@ -61,12 +60,8 @@ const InstructorSideBar: React.FC<StudentSideBarProps> = ({ isOpened }) => {
               <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FiUsers className="text-lg text-[#00C0EA]"/>All Students</li>
             </Link>
 
-            <Link to={'/'}>
+            <Link to={'/dashboard/instructor/password-update'}>
               <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><RiLockPasswordLine className="text-lg text-[#00C0EA]"/>Password</li>
-            </Link>
-
-            <Link to={'/dashboard/instructor/faqs'}>
-              <li className="flex items-center gap-3 font-semibold cursor-pointer bg-neutral-50 border border-neutral-100 p-2.5 lg:px-3 px-5 rounded-full w-full hover:bg-neutral-100"><FaQuestion className="text-lg text-[#00C0EA]"/>FAQs</li>
             </Link>
 
             <Link to={'/dashboard/welearn/cutomer-care-instructor'}>

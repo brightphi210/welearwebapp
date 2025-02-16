@@ -4,7 +4,7 @@ import InstructorTopNavbar from "../access/instructor/InstructorTopNavbar"
 import InstructorSideBar from "../access/instructor/InstructorSideBar"
 
 const CustomerCare2: React.FC = () => {
-  const whatsappNumber = "+1234567890"
+  const whatsappNumber = "+2349136288934"
   const whatsappMessage = encodeURIComponent("Hello, I need assistance.")
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
 
@@ -39,7 +39,7 @@ const CustomerCare2: React.FC = () => {
                         <div className="text-gray-600 text-center">
                         <p className="mb-2">Or reach us at:</p>
                         <p className="font-semibold">support@example.com</p>
-                        <p className="font-semibold">+1 (234) 567-8900</p>
+                        <p className="font-semibold">+234 913 628 8934</p>
                         </div>
                     </div>
                 </div>

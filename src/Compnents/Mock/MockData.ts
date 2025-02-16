@@ -3,24 +3,46 @@
 export const FAQs =[
     {
         id: 1,
-        question: 'What are the benefits of learning online?',
-        answer: 'Learning online can offer you flexibility, access to a wider range of resources, and opportunities to work remotely. Additionally, it can help you develop a stronger foundation in essential skills and help you achieve your goals.'
+        question: 'WHAT IS WELEARN GLOBAL ABOUT?',
+        answer: `
+            WELEARN GLOBAL IS A PRIVATE TUTORING FIRM THAT 
+            PROVIDES PRIVATE TUTORING SESSIONS FOR STUDENTS OF PRIMARY, SECONDARY CLASSES. MUSICAL INSTRUMENTS AND TECH COURSES.
+        `
     },
     {
         id: 2,
-        question: 'How can I choose the right course for me?',
-        answer: 'To choose the right course, consider your goals, skills, and interests. Look for courses that align with your passions, interests, and expertise. You can also explore online courses offered by certified instructors and organizations.'
+        question: 'WHERE DOES THE CLASSES HOLD?',
+        answer:    `OUR CLASSES ARE PHYSICAL PRIVATE CLASSES HELD AT THE CLIENTS RESIDENT OR CHOSEN VENUE.`
     },
 
     {
         id: 3,
-        question: 'What are the prerequisites for taking a course?',
-        answer: 'Some courses may have specific prerequisites, such as having a certain level of English proficiency, completing a specific course before starting a new one, or having a certain amount of prior knowledge. Make sure to check the course syllabus and requirements before signing up for a class.'
+        question: 'CAN I CHOOSE MY TUTOR?',
+        answer: `YES! WE MATCH STUDENTS WITH TUTORS BASED ON THEIR LEARNING NEEDS, BUT YOU CAN ALSO REQUEST A SPECIFIC TUTOR VIA THE WEBSITE.`
     },
     {
         id: 4,
-        question: 'Can I use Welearn to learn for my family?',
-        answer: 'Yes, Welearn is designed to be family-friendly and inclusive. You can sign up for classes with your family members and enjoy a variety of learning experiences. Additionally, we offer additional resources and support to help you stay connected and engaged.'
+        question: 'DO YOU OFFER TEST PREPARATION?',
+        answer: `YES! WE PROVIDE TUTORS FOR TEST LIKE IELTS, JAMB, WAEC`
+    },
+
+    {
+        id: 5,
+        question: 'HOW MUCH DOES IT COST?',
+        answer: `OUR PRICING VARIES BASED ON SUBJECTS, SESSION LENGTH AND TUTOR EXPERIENCE. YOU CAN CHAT US VIA WHATSAPP FOR MORE DETAILS ON THIS.`
+    },
+
+    {
+        id: 6,
+        question: 'HOW DO I BOOK A TUTORING SESSION?',
+        answer: `YOU CAN BOOK A SESSION THROUGH OUR WEBSITE, WHATSAPP OR BY CONTACTING US VIA EMAIL.`
+    },
+
+
+    {
+        id: 6,
+        question: 'CAN YOU HELP WITH HOMEWORK AND ASSIGNMENTS?',
+        answer: `ABSOLUTELY! OUR TUTORS CAN ASSIST WITH HOME WORK, AND EXAM PREPARATION`
     },
 
 ]
