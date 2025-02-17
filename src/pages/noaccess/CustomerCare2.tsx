@@ -1,7 +1,11 @@
 import type React from "react"
+import StudentSideBar from "../access/student/StudentSideBar"
+import StudentTopNavbar from "../access/student/StudentTopNavbar"
 import { useState } from "react"
-import InstructorTopNavbar from "../access/instructor/InstructorTopNavbar"
-import InstructorSideBar from "../access/instructor/InstructorSideBar"
+import { toast, ToastContainer } from "react-toastify"
+import { LuCopy } from "react-icons/lu";
+import { socials } from "@/Compnents/Mock/MockData"
+
 
 const CustomerCare2: React.FC = () => {
   const whatsappNumber = "+2349136288934"
@@ -11,13 +15,30 @@ const CustomerCare2: React.FC = () => {
     const [isOpened, setIsOpened] = useState(false)
     const toggleDrawer = () => setIsOpened(!isOpened)
 
+
+    const [copied, setCopied] = useState(false);
+    const numberToCopy = "+2349136288934";
+
+    const handleCopy = async () => {
+        try {
+        await navigator.clipboard.writeText(numberToCopy);
+        toast.success("Number Copied")
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+        console.error("Failed to copy!", err);
+        }
+    };
+
   return (
     <div>
         <div className='w-full'>
-            <InstructorTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
-            <InstructorSideBar isOpened={isOpened}/>
+            <StudentTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
+            <StudentSideBar isOpened={isOpened}/>
+    
 
             <div className="lg:pt-28  h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-2 overflow-y-scroll">
+                <ToastContainer theme="light" autoClose={4000} />
 
                 <div className="flex flex-col items-center lg:mt-[10rem] mt-[12rem] p-4 ">
                     <div className="bg-white rounded-lg lg:p-8 lg:!w-[60%] w-full">
@@ -37,9 +58,24 @@ const CustomerCare2: React.FC = () => {
                         </a>
 
                         <div className="text-gray-600 text-center">
-                        <p className="mb-2">Or reach us at:</p>
-                        <p className="font-semibold">support@example.com</p>
-                        <p className="font-semibold">+234 913 628 8934</p>
+                            <p className="mb-2">Or reach us at:</p>
+                            <p className="font-semibold">welearn562@gmail.com</p>
+                            <button className="font-semibold text-xl pt-3 cursor-pointer flex justify-center m-auto items-center gap-2 hover:text-neutral-500" 
+                                onClick={handleCopy}>+234 913 628 8934 <LuCopy />
+                            </button>
+                            {copied && <span className="text-green-500 pt-2">Copied!</span>}
+                        </div>
+
+
+                        <div className="flex flex-wrap items-center gap-4 justify-center py-5 pt-10">
+                            {socials.map((social)=>(
+                                <a 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    href={`${social.link}`} className="text-xl p-3 font-semibold text-sky-600 border border-sky-500 hover:bg-sky-400 hover:text-white rounded-full">
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>

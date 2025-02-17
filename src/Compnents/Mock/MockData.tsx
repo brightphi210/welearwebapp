@@ -1,4 +1,6 @@
 
+import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+
 
 export const FAQs =[
     {
@@ -45,4 +47,27 @@ export const FAQs =[
         answer: `ABSOLUTELY! OUR TUTORS CAN ASSIST WITH HOME WORK, AND EXAM PREPARATION`
     },
 
+]
+
+
+export const socials = [
+    {
+        icon: <FaFacebook />,
+        link: 'https://www.facebook.com/share/1AMmzMAZY8/'
+    },
+
+    {
+        icon: <FaInstagram />,
+        link: 'https://www.instagram.com/welearnglobal?igsh=MXR0dGV1aTlvZDNtMA=='
+    },
+
+    {
+        icon: <FaTiktok />,
+        link: 'https://www.tiktok.com/@welearnglobal?_t=ZM-8tzPFpdLALW&_r=1'
+    },
+
+    {
+        icon: <FaYoutube />,
+        link: 'https://youtube.com/@welearnapp?si=lG09RbEPHXIEaTt3'
+    }
 ]

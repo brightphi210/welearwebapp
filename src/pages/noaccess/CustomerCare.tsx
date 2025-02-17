@@ -4,6 +4,7 @@ import StudentTopNavbar from "../access/student/StudentTopNavbar"
 import { useState } from "react"
 import { toast, ToastContainer } from "react-toastify"
 import { LuCopy } from "react-icons/lu";
+import { socials } from "@/Compnents/Mock/MockData"
 
 
 const CustomerCare: React.FC = () => {
@@ -63,6 +64,18 @@ const CustomerCare: React.FC = () => {
                                 onClick={handleCopy}>+234 913 628 8934 <LuCopy />
                             </button>
                             {copied && <span className="text-green-500 pt-2">Copied!</span>}
+                        </div>
+
+
+                        <div className="flex flex-wrap items-center gap-4 justify-center py-5 pt-10">
+                            {socials.map((social)=>(
+                                <a 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    href={`${social.link}`} className="text-xl p-3 font-semibold text-sky-600 border border-sky-500 hover:bg-sky-400 hover:text-white rounded-full">
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>

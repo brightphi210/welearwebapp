@@ -26,7 +26,12 @@ import { Modal } from '@brightcodeui/beta-ui';
 import useGetSingleInstructor from "@/hooks/queries/useGetSingleInstructor"
 import useUpdateInstructorProfile from "@/hooks/mutations/useUpdateInstructorData"
 import { UpdateInstrutorProps } from "@/APIs/api/instructorsGet"
+import useDeleteAccount from "@/hooks/mutations/useDeleteAccount"
 
+
+type FormData = {
+  email: string,
+}
 
 const InstructorAccount = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +41,7 @@ const InstructorAccount = () => {
   const [isOpened, setIsOpened] = useState(false)
   const toggleDrawer = () => setIsOpened(!isOpened)
 
-  const { decodedToken } = useAuth()
+  const { decodedToken, handleLogout } = useAuth()
   const { data, isLoading } = useGetSingleInstructor(decodedToken?.profile_id ?? 0)
   const myData = data?.data
 
@@ -84,6 +89,27 @@ const InstructorAccount = () => {
       },
     )
   }
+
+  const { mutate: deleteMutate, isPending: isDeleting } = useDeleteAccount()
+  const {
+    handleSubmit: handleDeleteSubmit,
+    register: deleteRegister,
+    formState: { errors:deleteError },
+  } = useForm<FormData>()
+
+  const deleteOnSubmit = (data: FormData) => {
+    deleteMutate(data.email, {
+      onSuccess: () => {
+        handleLogout()
+        toast.success("Account deleted successfully")
+      },
+      onError: (error) => {
+        console.error("Account deletion failed:", error)
+        toast.error("An error occurred while deleting the account")
+      },
+    })
+  }
+
 
 
 
@@ -317,23 +343,36 @@ const InstructorAccount = () => {
       </div>
 
       <div>
-        <Modal 
+      <Modal 
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Delete Account"
           className="lg:!w-[30%] w-full text-sm p-5 !rounded-3xl !relative"
         > 
-          <div className="flex justify-center">
+          <form className="flex justify-center" onSubmit={handleDeleteSubmit(deleteOnSubmit)} >
             <div className="space-y-4 pt-6">
               <p className="bg-red-100 p-4 w-fit rounded-full text-center flex m-auto text-red-800 border border-red-300"><FiAlertOctagon className="text-2xl"/></p>
               <p className="text-center text-sm">Are you sure you want to delete <br /> your account? This action cannot be undone.</p>
 
+              <div>
+                <input
+                  type="email"
+                  {...deleteRegister("email", {
+                    required: "Email is required",
+                    value: myData?.user?.email || "",
+                  })}
+                  className="w-full px-3 py-2 border rounded-md"
+                  placeholder="Confirm your email"
+                />
+                {deleteError.email && <p className="text-red-500 text-xs mt-1">{deleteError.email.message}</p>}
+              </div>
+
               <div className="flex lg:flex-row flex-col justify-center gap-2 pt-3">
                 <CustomizedButtonOutline onClick={() => setIsModalOpen(false)} text="Cancel" />
-                <CustomizedButtonMain onClick={() => {}} text="Delete Account" />
+                  {isDeleting ? <CustomizedButtonLoading text="Deleting..." /> : <CustomizedButtonMain text="Delete Account" />}
               </div>
             </div>
-          </div>
+          </form>
         </Modal>
       </div>
     </div>
