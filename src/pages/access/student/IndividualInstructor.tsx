@@ -462,7 +462,7 @@ const IndividualInstructor = () => {
                               <p className='text-[#00C0EA] text-sm'>Note:</p>
                               <p className='text-base'>After you have made your payment, please send a screenshot to the whatsapp number</p>
                               <p className='text-base font-bold'>Whatsapp Number: 
-                                <span onClick={handleCopy} className='myFont text-[#00C0EA] flex items-center gap-3 pt-3'>+234 913 628 8934 <LuCopy /></span>
+                                <span onClick={handleCopy} className='myFont cursor-pointer text-[#00C0EA] flex items-center gap-3 pt-3'>+234 913 628 8934 <LuCopy /></span>
                               </p>
                             </div>
                           </div>
