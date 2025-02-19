@@ -64,8 +64,8 @@ const InstructorHome = () => {
                   <div>
                     <h2 className='text-base font-bold'>Acount Verification Pending</h2>
                     <p className='font-semibold pt-1'>
-                      Proceed to our office at No 1 Ikwerre Road, <br /> 
-                      by Agip Junction by Ada George for final verification
+                      
+                      Proceed to our office at <br /> No 7 Trans-woji road Mercy mall Port harcourt
                     </p>
                   </div>
                   <p className='text-3xl'><PiWarningOctagon /></p>

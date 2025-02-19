@@ -18,6 +18,8 @@ import { PiPiggyBank } from "react-icons/pi";
 import success from '../../../assets/success.png'
 import { toast, ToastContainer } from 'react-toastify';
 import useGetSingleStudent from '@/hooks/queries/useGetSingleStudent';
+import { LuCopy } from 'react-icons/lu';
+
 
 
 interface ErrorResponse {
@@ -120,8 +122,20 @@ const IndividualInstructor = () => {
   }
 
 
+  const numberToCopy = "+2349136288934";
+  
+      const  handleCopy = async () => {
+          try {
+          await navigator.clipboard.writeText(numberToCopy);
+          toast.success("Number Copied")
+          } catch (err) {
+          console.error("Failed to copy!", err);
+          }
+      };
+
+
   return (
-    <div>
+    <div> 
       <div className='w-full'>
         
         <StudentTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
@@ -447,7 +461,9 @@ const IndividualInstructor = () => {
                             <div className='space-y-2'>
                               <p className='text-[#00C0EA] text-sm'>Note:</p>
                               <p className='text-base'>After you have made your payment, please send a screenshot to the whatsapp number</p>
-                              <p className='text-base font-bold'>Whatsapp Number: <span className='myFont text-[#00C0EA]'>0813 1133 113</span></p>
+                              <p className='text-base font-bold'>Whatsapp Number: 
+                                <span onClick={handleCopy} className='myFont text-[#00C0EA] flex items-center gap-3 pt-3'>+234 913 628 8934 <LuCopy /></span>
+                              </p>
                             </div>
                           </div>
 

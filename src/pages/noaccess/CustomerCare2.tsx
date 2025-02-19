@@ -59,7 +59,7 @@ const CustomerCare2: React.FC = () => {
 
                         <div className="text-gray-600 text-center">
                             <p className="mb-2">Or reach us at:</p>
-                            <p className="font-semibold">welearn562@gmail.com</p>
+                            <p className="font-semibold">globalwelearn@gmail.com</p>
                             <button className="font-semibold text-xl pt-3 cursor-pointer flex justify-center m-auto items-center gap-2 hover:text-neutral-500" 
                                 onClick={handleCopy}>+234 913 628 8934 <LuCopy />
                             </button>
