@@ -1,10 +1,10 @@
 import type React from "react"
-import StudentSideBar from "../access/student/StudentSideBar"
-import StudentTopNavbar from "../access/student/StudentTopNavbar"
 import { useState } from "react"
 import { toast, ToastContainer } from "react-toastify"
 import { LuCopy } from "react-icons/lu";
 import { socials } from "@/Compnents/Mock/MockData"
+import InstructorTopNavbar from "../access/instructor/InstructorTopNavbar"
+import InstructorSideBar from "../access/instructor/InstructorSideBar"
 
 
 const CustomerCare2: React.FC = () => {
@@ -33,8 +33,8 @@ const CustomerCare2: React.FC = () => {
   return (
     <div>
         <div className='w-full'>
-            <StudentTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
-            <StudentSideBar isOpened={isOpened}/>
+            <InstructorTopNavbar isOpened={isOpened} toggleDrawer={toggleDrawer}/>
+            <InstructorSideBar isOpened={isOpened}/>
     
 
             <div className="lg:pt-28  h-full w-full lg:px-16 2xl:pl-80 xl:pl-72 lg:pl-72 px-2 overflow-y-scroll">
