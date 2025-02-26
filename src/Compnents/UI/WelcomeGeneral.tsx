@@ -27,7 +27,7 @@ const WelcomeGeneral: React.FC<WelcomeProps> = ({mainText, secondaryText, onboar
 
         <div className="w-full" data-aos="fade-up" data-aos-duration="500">
           <img src={`${onboardingImage}`} className="w-full" alt="" />
-          <div className="lg:hidden block pt-5">
+          <div className="lg:!hidden !block pt-5">
             <ProgressDots />
           </div>
         </div>
@@ -44,7 +44,7 @@ const WelcomeGeneral: React.FC<WelcomeProps> = ({mainText, secondaryText, onboar
                     <Link to={`${linkPath}`} className="" >
                     <CustomizedButtonMain text="Continue"/>
                     </Link>
-                    <div className="lg:block hidden">
+                    <div className="lg:!block !hidden">
                     <ProgressDots />
                     </div>
                 </div> 
@@ -55,7 +55,7 @@ const WelcomeGeneral: React.FC<WelcomeProps> = ({mainText, secondaryText, onboar
                     <Link to={`${linkPath}`} className="" >
                     <CustomizedButtonMain text="Continue"/>
                     </Link>
-                    <div className="lg:block hidden">
+                    <div className="lg:!block !hidden">
                     <ProgressDots />
                     </div>
                 </div> 
@@ -65,7 +65,7 @@ const WelcomeGeneral: React.FC<WelcomeProps> = ({mainText, secondaryText, onboar
                 location.pathname === '/welcome-three' && 
                 <div >
                     <CustomizedButtonMain text="Continue" onClick={handleContinue}/>
-                    <div className="lg:block hidden">
+                    <div className="lg:!block !hidden">
                         <ProgressDots />
                     </div>
                 </div>
